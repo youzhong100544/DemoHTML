@@ -1,0 +1,2218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+
+		/* --------------------------------------------------- */
+
+		.container_demo_avatar_01 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+		}
+
+		/* 使用 flex 布局 实现子元素居中 */
+		.container_demo_avatar_01 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.container_demo_avatar_01 .demo_avatar_01 {
+			width: 256px;
+			height: 256px;
+
+			border: 5px solid #c02942;
+			border-radius: 50%;
+			background: #cde490;
+			transition: 0.5s;
+
+		}
+
+		.container_demo_avatar_01 .demo_avatar_01 img {
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			transition: 0.5s;
+		}
+
+		.container_demo_avatar_01 .demo_avatar_01:hover img {
+			transform: scale(1.3);
+		}
+
+		/* --------------------------------------------------- */
+
+		.container_demo_avatar_02 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+		}
+
+		.container_demo_avatar_02 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.container_demo_avatar_02 .demo_avatar_02 {
+			width: 256px;
+			height: 256px;
+
+			border: 5px solid #c02942;
+			border-radius: 50%;
+			background: #cde490;
+			transition: 0.5s;
+
+			overflow: hidden;
+		}
+
+		.container_demo_avatar_02 .demo_avatar_02 img {
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			transition: 0.5s;
+		}
+
+		.container_demo_avatar_02 .demo_avatar_02:hover img {
+			transform: scale(1.3);
+		}
+
+		/* --------------------------------------------------- */
+		/* --------------------------------------------------- */
+
+		.demo_avatar_03 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_03 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_03 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+
+			width: var(--size);
+			height: var(--size);
+
+			outline: 5px solid;
+
+			transition: 0.5s;
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_03 img:hover {
+			transform: scale(1.35);
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_04 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_04 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_04 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			width: var(--size);
+			height: var(--size);
+
+			outline: 5px solid;
+
+			background: radial-gradient(
+				circle closest-side,
+
+				var(--color_circle_background) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 100%
+			);
+
+			transition: 0.5s;
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_04 img:hover {
+			transform: scale(1.35);
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_05 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_05 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_05 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			width: var(--size);
+			height: var(--size);
+
+			outline: 5px solid;
+
+			background: radial-gradient(
+				circle closest-side,
+
+				var(--color_circle_background) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 100%,
+
+				blue 100%
+			);
+
+			transition: 0.5s;
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_05 img:hover {
+			transform: scale(1.35);
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_06 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_06 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_06 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			width: var(--size);
+			height: var(--size);
+
+			outline: 5px solid;
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			);
+
+			transition: 0.5s;
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_06 img:hover {
+			transform: scale(1.35);
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_07 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_07 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_07 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+			outline: 5px solid;
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_07 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_08 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_08 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_08 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+			outline: 5px solid;
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) calc(100% / var(--scale_factor));
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_08 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_09 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_09 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_09 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_09 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_10 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_10 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_10 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_10 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_11 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_11 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_11 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			outline-offset: 10px;
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_11 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_12 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_12 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_12 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			outline-offset: -5px;
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_12 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_13 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_13 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_13 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			outline-offset: calc(0px - var(--width_circle_border));
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_13 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_14 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_14 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_14 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_14 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_15 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_15 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_15 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_15 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_16 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_16 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_16 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_16 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_17 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_17 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_17 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			mask: radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_17 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_18 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_18 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_18 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) var(--bgOption);
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			mask: radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption);
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_18 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_19 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_19 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_19 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			width: var(--size);
+			height: var(--size);
+
+
+			/* background: radial-gradient(
+				
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) var(--bgOption); */
+
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			/* mask: radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption); */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_19 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_20 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_20 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_20 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+
+			width: var(--size);
+			height: var(--size);
+
+
+			/* background: radial-gradient(
+				
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) var(--bgOption); */
+			background: linear-gradient(#000 0 0) no-repeat;
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			/* mask: radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption); */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_20 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_21 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_21 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_21 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			--shrink: calc((var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border));
+
+			width: var(--size);
+			height: var(--size);
+
+
+			/* background: radial-gradient(
+				
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) var(--bgOption); */
+			background: linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor)) 
+				50%
+			;
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			/* outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			); */
+			outline-offset: var(--shrink);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			/* mask: radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption); */
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_21 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_22 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_22 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_22 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			--shrink: calc((var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border));
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) var(--bgOption);
+			/* background: linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor)) 
+				50%
+			; */
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			/* outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			); */
+			outline-offset: var(--shrink);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			mask: linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor)) 
+				50%
+			,
+			radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption);
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_22 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_23 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_23 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_23 img {
+			/* 尺寸 */
+			--size: 256px;
+			
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			--shrink: calc((var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border));
+
+			width: var(--size);
+			height: var(--size);
+
+
+			background: radial-gradient(
+				
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				blue 100%
+			) var(--bgOption);
+			/* background: linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor)) 
+				50%
+			; */
+
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			/* outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			); */
+			outline-offset: var(--shrink);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			mask: 
+			linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor) - 2 * var(--width_circle_border)) 
+				50%
+			,
+			radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption);
+
+			transition: 0.5s;
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_23 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+		/* --------------------------------------------------- */
+
+		.demo_avatar_24 {
+			width: 512px;
+			height: 512px;
+			margin: 0 auto;
+
+			border: 5px solid #c02942;
+
+		}
+		/* 使用 flex 布局 实现子元素居中 */
+		.demo_avatar_24 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.demo_avatar_24 img {
+			/* 尺寸 */
+			--size: 256px;
+			/* --size_width: 256px; */
+			/* --size_height: 256px; */
+
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			--shrink: calc((var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border));
+
+			width: var(--size);
+			height: var(--size);
+
+			/*
+				radial-gradient() CSS 函数创建一个图像，该图像由从原点辐射的两种或多种颜色之间的渐进过渡组成，其形状可以是圆形或椭圆形。
+				函数的结果是 <gradient> 数据类型的对象，此对象是一种特殊的 <image> 类型。
+
+				语法
+					在容器中心的渐变，从红色开始，变成蓝色，最后变成绿色
+					radial-gradient(circle at center, red 0, blue, green 100%)
+			*/
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				/* blue 100% */
+				transparent 100%
+			) var(--bgOption);
+			/* background: linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor)) 
+				50%
+			; */
+
+			/* 
+				CSS 的 outline 属性是在一条声明中设置多个轮廓属性的简写属性，
+				例如 outline-style, outline-width 和 outline-color。
+
+				border 和 outline
+					
+					border 和 outline 很类似，但有如下区别：
+						1、outline 不占据空间，绘制于元素内容周围。
+						2、根据规范，outline 通常是矩形，但也可以是非矩形的。
+			 */
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			/* outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			); */
+			outline-offset: var(--shrink);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			mask: 
+			linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor) - 2 * var(--width_circle_border)) 
+				50%
+			,
+			radial-gradient(
+				circle closest-side,
+				#000 99%,
+				transparent
+			) var(--bgOption);
+
+			
+			/* 
+			transition 属性是一个简写属性，用于设置四个过渡属性：
+				transition-property
+				transition-duration
+				transition-timing-function
+				transition-delay 
+			
+			在一个例子中使用所有过渡属性：
+			div
+			{
+				transition-property: width;
+				transition-duration: 1s;
+				transition-timing-function: linear;
+				transition-delay: 2s;
+				
+				// Safari
+				-webkit-transition-property:width;
+				-webkit-transition-duration:1s;
+				-webkit-transition-timing-function:linear;
+				-webkit-transition-delay:2s;
+			}
+
+			与上面的例子相同的过渡效果，但是使用了简写的 transition 属性：
+			div
+			{
+				transition: width 1s linear 2s;
+				
+				// Safari
+				-webkit-transition:width 1s linear 2s;
+			}
+			*/
+			transition: 0.5s;
+
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.demo_avatar_24 img:hover {
+			/* transform: scale(1.35); */
+			--scale_factor: 1.35;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div class="container_demo_avatar_01">
+		<div class="demo_avatar_01">
+			<img src="./image/0101.png" alt=""><span></span>
+		</div>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<div class="container_demo_avatar_02">
+		<div class="demo_avatar_02">
+			<img src="./image/0101.png" alt=""><span></span>
+		</div>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<div class="demo_avatar_03">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		接下来，我们得想办法画一个圆圈，这个圆圈用什么画那？<br/>
+		你肯定不能用 border，不然的话，你一放大，这个 border 会跟着放大。<br/>
+		<br/>
+		我们得用啥那？<br/>
+		这里想到的办法是使用径向渐变 radial-gradient()；<br/>
+		<br/>
+		我们使用 background: radial-gradient()；<br/>
+		先给它扩散一个黄色的内容，然后在扩散一个红色的边框；<br/>
+		<br/>
+		但是我们先思考一个问题，就是对这个圆，有没有限制，<br/>
+		因为默认情况下。圆扩散成 100% 的时候，它的圆是把这个边框包围起来的，<br/>
+		而我们希望的是 圆扩散成 100% 的时候 在边框里面；<br/>
+		因此我们要限制一下这个圆的扩散范围，<br/>
+		怎么限制那？<br/>
+		我们可以使用 closest-side， 表示以最短边做为圆半径，<br/>
+		那么之后写颜色的时候， 百分比就相对于这个最短边的。<br/>
+		颜色使用黄色，<br/>
+		<br/>
+		那颜色扩散多少那？<br/>
+		我们来研究一下，<br/>
+		应该是扩散到 100% 减去这个边框值，<br/>
+		比如边框的粗细是 5px，那么就是 100% 减去 5px，来填充黄色<br/>
+		<br/>
+		那么后续的颜色是啥？<br/>
+		接下来就是红色的边框，<br/>
+		它要从黄色边缘扩散到 100%<br/>
+
+	</p>
+
+	<div class="demo_avatar_04">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		那么之后颜色是啥？<br/>
+		之后就随便用一个颜色填充<br/>
+		我们这里用蓝色
+
+	</p>
+
+	<div class="demo_avatar_05">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		现在还有一个小问题，就是这个边框有锯齿<br/>
+		这是渐变的老问题了，<br/>
+		<br/>
+		解决方式呢，基本上都是把两个颜色之间 相隔 那么一点点距离<br/>
+	</p>
+
+	<div class="demo_avatar_06">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		接下来就是，鼠标移入，它会放大<br/>
+		但是你放大归放大，<br/>
+		图片头像可以放大，但是这个背景图（黄色背景、红色边框）他要保持原始尺寸<br/>
+		<br/>
+		纵向的尺寸先不管；<br/>
+		横向的尺寸，我要始终保持这个背景图的尺寸看上去是不变的，即便整个元素放大了<br/>
+		那么怎么做那？<br/>
+		如果元素放大了两倍，那么我这个背景图就要缩减为原来的 1/2<br/>
+		也就是说这里的背景图的横向尺寸，应该是100%除以放大倍数，也就是 calc(100% / 放大倍数)<br/>
+		纵向的尺寸 为 100%；<br/>
+		<br/>
+		尺寸的代码就是<br/>
+		横向：calc(100% / 放大倍数)<br/>
+		纵向：100%<br/>
+		<br/>
+		background：no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+	</p>
+
+	<div class="demo_avatar_07">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<div class="demo_avatar_08">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		现在我们还要解决一个问题，<br/>
+		因为这是个背景，就导致了这个图片内容，它是覆盖背景的；<br/>
+		覆盖背景倒是没事问题，关键是我们要怎么把下面的边框红线显示出来？<br/>
+		<br/>
+		我们就可以借助 outline<br/>
+
+	</p>
+
+	<div class="demo_avatar_09">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		然后我们可以使用 border-radius 定形<br/>
+		<br/>
+		左上角不变、右上角不变，<br/>
+		左下角不变、右下角给它设打一点；<br/>
+		border-radius: 0 0 999px 999px;<br/>
+		<br/>
+		这样 outline 就显示为 border-radius 的形状了
+		
+	</p>
+
+	<div class="demo_avatar_10">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		现在外边框离它的内容之间呢有点间隙<br/>
+		这个我们使用 outline-offset，<br/>
+		outline-offset 表示外边框和元素之间的距离<br/>
+		你把这个距离设的越大，那他的距离越远<br/>
+	</p>
+
+	<div class="demo_avatar_11">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		它也可以为负数<br/>
+	</p>
+
+	<div class="demo_avatar_12">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		最好还是用变量的方式<br/>
+	</p>
+
+	<div class="demo_avatar_13">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		现在问题又来了，<br/>
+		我们需要搞定的问题是，当鼠标移入的时候这图片放大<br/>
+		但是外边框的尺寸保持不变<br/>
+		也就是说，我们根据目前的信息，<br/>
+		动态的调整这个 outline-offset 的值<br/>
+		
+		<br/>
+		那怎么调整呢？<br/>
+		<br/>
+
+		现在，这个外边框是这个样子的，<br/>
+		图片被放大了 2 倍<br/>
+		那么外边框自然而然也会跟着放大 2 倍<br/>
+		现在我们要让这个外边框往回缩<br/>
+		
+		<br/>
+		缩多少呢？<br/>
+		<br/>
+		
+		是不是等于<br/>
+		（放大过后的宽度 - 放大之前的宽度） / 2<br/>
+		也就是<br/> 
+		（原始的宽度 * 放大倍率 - 原始的宽度）/ 2<br/>
+		
+		<br/>
+		但是，由于我们这个 outline-offset 它设置的值是相对于原始尺寸的<br/>
+		也就是说，原始的宽度为200，<br/>
+		那 outline-offset 的值 最多只能是 -100<br/>
+		
+		<br/>
+		那如果说放大了 1000 倍，<br/>
+		那（原始的宽度 * 放大倍率 - 原始的宽度）/ 2 的结果是不是远远超过 100 了<br/>
+
+		<br/>
+		就是你算出来的这个值，是被放大过后的值，<br/>
+		你要得到原始的收缩的话，还要去除以一个放大倍率<br/>
+
+		<br/>
+		也就是<br/>
+		（（原始的宽度 * 放大倍率 - 原始的宽度）/ 2） / 放大倍率<br/>
+		
+		<br/>
+		数学换算得到<br/>
+		（原始的宽度 - 原始的宽度 / 放大倍率 ）/ 2<br/>
+
+		<br/>
+		但是 （原始的宽度 - 原始的宽度 / 放大倍率 ）得到的是正值<br/>
+		我们需要往里收缩，需要一个负值<br/>
+
+		<br/>
+		所以把它反过来相减就可以了<br/>
+		就是<br/>
+		（原始的宽度 / 放大倍率 - 原始的宽度）/ 2<br/>
+
+		<br/>
+		结果就是把<br/>
+		
+		outline-offset: calc(<br/>
+		 &emsp;0px - var(--width_circle_border)<br/>
+		);<br/>
+
+		替换成<br/>
+
+		outline-offset: calc(<br/>
+			&emsp;((var(--size)/var(--scale_factor) - var(--size)) / 2) - var(--width_circle_border)<br/>
+		);
+		<br/>
+
+		
+	</p>
+
+	<div class="demo_avatar_14">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		接下来还有一个问题<br/>
+		就是它放大过后，上面这根线把图片挡住了，<br/>
+		我们不能让这根线对我们的图片有任何的遮挡<br/>
+
+		<br/>
+		我们使用 padding-top 内边距<br/>
+		padding-top: 100px;<br/>
+
+		
+	</p>
+
+	<div class="demo_avatar_15">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		但是现在背景图又不对了<br/>
+		那是因为，<br/>
+		背景图默认覆盖的是 填充 和 padding范围 内的东西<br/>
+		
+		<br/>
+		所以我们只需要让背景图覆盖内容盒子就可以了<br/>
+		使用 content-box<br/>
+		<br/>
+		background: radial-gradient(<br/>
+			***<br/>
+		) content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;<br/>
+		
+	</p>
+
+	<div class="demo_avatar_16">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		接下来问题就是，我们要给它框一个范围<br/>
+		就是在这个范围内的东西显示，其他的地方不显示<br/>
+
+		<br/>
+		我们可以使用 mask<br/>
+		
+	</p>
+
+	<div class="demo_avatar_17">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		提取变量<br/>
+		
+	</p>
+
+	<div class="demo_avatar_18">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<p>
+		接下来，物品们先把 mask 和 background 隐藏起来<br/>
+	</p>
+
+	<div class="demo_avatar_19">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		我们要把图片上面的部分显示出来<br/>
+		在和之前的圆形 mask 拼接起来就可以了<br/>
+
+		<br/>
+		我们先用背景来试一试,做个线性渐变<br/>
+		background: linear-gradient(#000 0 0);<br/>
+	</p>
+
+	<div class="demo_avatar_20">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		1111<br/>
+	</p>
+
+	<div class="demo_avatar_21">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		1111<br/>
+	</p>
+
+	<div class="demo_avatar_22">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		1111<br/>
+	</p>
+
+	<div class="demo_avatar_23">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<p>
+		1111<br/>
+	</p>
+
+	<div class="demo_avatar_24">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<hr/>
+	<hr/>
+	<br/>
+	<br/>
+	<br/>
+	
+</body>
+</html>

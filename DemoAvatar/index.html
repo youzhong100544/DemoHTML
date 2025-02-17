@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+
+		/* Start  - Reset */
+
+		* {
+			margin: 0; 
+			padding: 0; 
+			box-sizing: border-box;
+		}
+
+		/* End  - Reset */
+
+
+        /* -------------------------------------------------------------- */
+
+
+		/* Start - 恢复元素的默认设置；防止由于 CSS 样式 统一化 而 引起的不必要的 bug */
+		.avatar img {
+			box-sizing: content-box;
+		}
+		/* End - 恢复元素的默认设置；防止由于 CSS 样式 统一化 而 引起的不必要的 bug */
+
+		.avatar {
+			width: 512px;
+			height: 512px;
+			border: 10px solid red;
+
+			margin: 0 auto;
+		}
+
+		/* Start - 使 div 里面的 img 子元素居中 */
+		/* 
+			img标签在HTML中是一个行内元素，而不是块级元素。
+			行内元素不会独占一行，而是与其他行内元素在同一行内显示。
+		*/
+		.avatar {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		/* End - 使 div 里面的 img 子元素居中 */
+
+		.avatar img {
+			/* 尺寸 */
+			--size: 256px;
+			/* --size_width: 256px; */
+			/* --size_height: 256px; */
+
+			/* 圆形边框颜色 */
+			--color_circle_border: #c02942;
+			/* 圆形边框内背景颜色 */
+			--color_circle_background: #cde490;
+
+			/* 圆形边框宽度 */
+			--width_circle_border: 5px; /* 边框宽度 */
+
+			/* 鼠标移入放大倍数 */
+			--scale_factor: 1;   /* 放大倍数 */
+
+			--bgOption: content-box no-repeat center/calc(100% / var(--scale_factor)) 100%;
+
+			--shrink: calc((var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border));
+
+			width: var(--size);
+			height: var(--size);
+
+			/*
+				radial-gradient() CSS 函数创建一个图像，该图像由从原点辐射的两种或多种颜色之间的渐进过渡组成，其形状可以是圆形或椭圆形。
+				函数的结果是 <gradient> 数据类型的对象，此对象是一种特殊的 <image> 类型。
+
+				语法
+					在容器中心的渐变，从红色开始，变成蓝色，最后变成绿色
+					radial-gradient(circle at center, red 0, blue, green 100%)
+			*/
+			background: radial-gradient(
+				/* closest-side 表示以最短边为半径 */
+				circle closest-side,
+
+				var(--color_circle_background) calc(99% - var(--width_circle_border)),
+
+				var(--color_circle_border) calc(100% - var(--width_circle_border)),
+
+				var(--color_circle_border) 99%,
+
+				/* blue 100% */
+				transparent 100%
+			) var(--bgOption);
+			/* background: linear-gradient(#000 0 0) 
+				no-repeat 
+				center 
+				calc(0px - var(--shrink)) / calc(100% / var(--scale_factor)) 
+				50%
+			; */
+
+			/* 
+				CSS 的 outline 属性是在一条声明中设置多个轮廓属性的简写属性，
+				例如 outline-style, outline-width 和 outline-color。
+
+				border 和 outline
+					
+					border 和 outline 很类似，但有如下区别：
+						1、outline 不占据空间，绘制于元素内容周围。
+						2、根据规范，outline 通常是矩形，但也可以是非矩形的。
+			 */
+			/* outline: 5px solid red; */
+			/* outline: 5px solid; */
+			outline: var(--width_circle_border) solid var(--color_circle_border);
+
+			/* outline-offset: 10px; */
+			/* outline-offset: -5px; */
+			/* outline-offset: calc(0px - var(--width_circle_border)); */
+			/* outline-offset: calc(
+				(var(--size)/var(--scale_factor) - var(--size)) / 2 - var(--width_circle_border)
+			); */
+			outline-offset: var(--shrink);
+
+			border-radius: 0 0 999px 999px;
+			/* border-radius: 0 0 100% 100%; */
+
+			padding-top: 100px;
+
+			/* -webkit-mask: radial-gradient( */
+			mask: 
+				linear-gradient(#000 0 0) 
+					no-repeat 
+					center 
+					calc(0px - var(--shrink)) / calc(100% / var(--scale_factor) - 2 * var(--width_circle_border)) 
+					50%
+				,
+				radial-gradient(
+					circle closest-side,
+					#000 99%,
+					transparent
+				) var(--bgOption)
+			;
+
+			
+			/* 
+			transition 属性是一个简写属性，用于设置四个过渡属性：
+				transition-property
+				transition-duration
+				transition-timing-function
+				transition-delay 
+			
+			在一个例子中使用所有过渡属性：
+			div
+			{
+				transition-property: width;
+				transition-duration: 1s;
+				transition-timing-function: linear;
+				transition-delay: 2s;
+				
+				// Safari
+				-webkit-transition-property:width;
+				-webkit-transition-duration:1s;
+				-webkit-transition-timing-function:linear;
+				-webkit-transition-delay:2s;
+			}
+
+			与上面的例子相同的过渡效果，但是使用了简写的 transition 属性：
+			div
+			{
+				transition: width 1s linear 2s;
+				
+				// Safari
+				-webkit-transition:width 1s linear 2s;
+			}
+			*/
+			transition: 0.5s;
+
+			transform: scale(var(--scale_factor));
+
+			/* 设置当鼠标悬停在元素上时显示的光标类型。通常，这个属性值会将光标变为手形状 */
+			cursor: pointer;
+		}
+
+		.avatar img:hover{
+			/* transform: scale(1.3); */
+			--scale_factor: 1.3;
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="avatar">
+		<img src="./image/0101.png" alt=""><span></span>
+	</div>
+
+
+	<br/>
+	<br/>
+	<br/>
+	<hr/>
+	<hr/>
+	<br/>
+	<br/>
+	<br/>
+	
+</body>
+</html>
