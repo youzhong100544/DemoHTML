@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+
+		/* Start  - Reset */
+
+		* {
+			margin: 0; 
+			padding: 0; 
+			box-sizing: border-box;
+		}
+
+		/* End  - Reset */
+
+        /* -------------------------------------------------------------- */
+
+		/* Start - 公共样式 */
+		.wrap {
+
+			/*
+				margin 属性为给定元素设置所有四个（上右下左）方向的外边距属性。
+				也就是 margin-top、margin-right、margin-bottom 和 margin-left 四个外边距属性设置的简写。
+
+				上、下外边框的设置对*不可替换*内联元素，如 <span> 和 <code>，无效。
+
+				/* 应用于所有边
+				margin: 1em;
+				margin: -3px;
+
+				/* 上边下边 | 左边右边
+				margin: 5% auto;
+
+				/* 上边 | 左边右边 | 下边
+				margin: 1em auto 2em;
+
+				/* 上边 | 右边 | 下边 | 左边
+				margin: 2px 1em 0 auto;
+
+			*/
+			margin: 10px 10px 0 10px;
+		}
+
+		.wrap .description {
+			margin: 10px;
+		}
+
+		.wrap .data {
+			width: 100%;
+			/* height: 128px; */
+
+			border: 1px solid black;
+
+			padding: 10px;
+
+			/*
+				采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。
+				它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。
+
+				容器默认存在两根轴：
+					水平的主轴（main axis）和垂直的交叉轴（cross axis）。
+					主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；
+					交叉轴的开始位置叫做cross start，结束位置叫做cross end。
+
+				项目默认沿主轴排列。
+					单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。
+			
+				容器的属性
+
+					flex-direction 属性
+
+						flex-direction 属性决定主轴的方向（即项目的排列方向）。
+
+						flex-direction: row | row-reverse | column | column-reverse;
+
+						它可能有4个值。
+							row（默认值）：主轴为水平方向，起点在左端。
+							row-reverse：主轴为水平方向，起点在右端。
+							column：主轴为垂直方向，起点在上沿。
+							column-reverse：主轴为垂直方向，起点在下沿。
+					
+					flex-wrap 属性
+
+						默认情况下，项目都排在一条线（又称”轴线”）上。
+						flex-wrap 属性定义，如果一条轴线排不下，如何换行。
+			
+						flex-wrap: nowrap | wrap | wrap-reverse;
+						
+						它可能取三个值。
+							（1）nowrap（默认）：不换行。
+							（2）wrap：换行，第一行在上方。
+							（3）wrap-reverse：换行，第一行在下方。
+					
+					flex-flow
+
+						flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为row nowrap。
+
+						flex-flow: <flex-direction> <flex-wrap>;
+
+					justify-content 属性
+						
+						justify-content属性定义了项目在主轴上的对齐方式。
+						
+						justify-content: flex-start | flex-end | center | space-between | space-around;
+
+						它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。
+							flex-start（默认值）：左对齐
+							flex-end：右对齐
+							center： 居中
+							space-between：两端对齐，项目之间的间隔都相等。
+							space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+			
+					align-items 属性
+					
+						align-items 属性定义项目在交叉轴上如何对齐。
+
+						align-items: flex-start | flex-end | center | baseline | stretch;
+
+						它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。
+							flex-start：交叉轴的起点对齐。
+							flex-end：交叉轴的终点对齐。
+							center：交叉轴的中点对齐。
+							baseline: 项目的第一行文字的基线对齐。
+							stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+
+					align-content 属性
+						
+						align-content 属性定义了多根轴线的对齐方式。
+						如果项目只有一根轴线，该属性不起作用。
+
+						align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+
+						该属性可能取6个值。
+							flex-start：与交叉轴的起点对齐。
+							flex-end：与交叉轴的终点对齐。
+							center：与交叉轴的中点对齐。
+							space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+							space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+							stretch（默认值）：轴线占满整个交叉轴。
+
+			*/
+			display: flex;
+			display: -webkit-flex; /* Safari */
+
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: flex-start;
+		}
+
+		.wrap .data div.data-code-style {
+			width: 512px;
+			height: 256px;
+
+			border: 1px solid black;
+
+			margin: 10px 0 10px 10px;
+			padding: 10px;
+
+			/* 内容不换行，显示滚动条 */
+			white-space: nowrap;
+			overflow: auto;
+		}
+		.wrap .data div.data-code-result {
+			width: 256px;
+			/* height: 128px; */
+
+			border: 1px solid black;
+
+			margin: 10px 0 10px 10px;
+			/* padding: 10px; */
+		}
+		.wrap .data div.data-code-description {
+			/* width: 256px; */
+			/* height: 128px; */
+
+			border: 1px solid black;
+
+			margin: 10px 0 10px 10px;
+			padding: 10px;
+		}
+		/* End - 公共样式 */
+
+
+        /* -------------------------------------------------------------- */
+
+		.learn-01-01 {
+			position: relative;
+		}
+
+		.learn-01-01 .learn-01-01-contrast {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 100px;
+			height: 100px;
+			border: 10px solid red;
+
+			/* 设置背景图片占满div且保持原有比例 */
+			background: url("../image/0101.png") no-repeat center / 100% 100%;
+			/* 
+			等效上面
+			background: url("../image/0101.png") no-repeat center;
+			background-size: 100% 100%; 
+			*/
+		}
+
+		.learn-01-01 .learn-01-01-demo {
+			position: absolute;
+			top: 0;
+			left: 0;
+			
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background: transparent;
+			border: 10px solid green;
+		}
+
+		/* -------------------------------------------------------------- */
+
+		.learn-01-02 {
+			position: relative;
+		}
+
+		.learn-01-02 .learn-01-02-contrast {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 100px;
+			height: 100px;
+			border: 10px solid red;
+
+			/* 设置背景图片占满div且保持原有比例 */
+			background: url("../image/0101.png") no-repeat center / 100% 100%;
+			/* 
+			等效上面
+			background: url("../image/0101.png") no-repeat center;
+			background-size: 100% 100%; 
+			*/
+		}
+
+		.learn-01-02 .learn-01-02-demo {
+			position: absolute;
+			top: 0;
+			left: 0;
+			
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background: transparent;
+			border: 10px solid green;
+		}
+
+		.outer-circle {
+			position: relative;
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			background-color: #afb4db;
+		}
+		.inner-circle {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			background-color: #fff;
+		}
+
+
+
+	</style>
+
+	<script>
+
+	</script>
+</head>
+<body>
+
+	<div class="wrap">
+		<h2> CSS 实现圆环 </h2>
+
+		<h3> 方法一 </h3>
+		<p class="description">
+			使用 border 加 border-radius，在使用 background 隐藏内容<br/>
+			border: 10px solid green;<br/>
+			border-radius: 50%;<br/>
+			background: transparent;<br/>
+			
+		</p>
+
+		<div class="data">
+			
+			<div class="data-code-style">
+				.learn-01-01 {<br/>
+					position: relative;<br/>
+				}<br/>
+				<br/>
+				.learn-01-01-contrast {<br/>
+					position: absolute;<br/>
+					top: 0;<br/>
+					left: 0;<br/>
+					<br/>
+					width: 100px;<br/>
+					height: 100px;<br/>
+					border: 10px solid red;<br/>
+					<br/>
+					/* 设置背景图片占满div且保持原有比例 */<br/>
+					background: url("../image/0101.png") no-repeat center / 100% 100%;<br/>
+					/* <br/>
+					等效上面<br/>
+					background: url("../image/0101.png") no-repeat center;<br/>
+					background-size: 100% 100%; <br/>
+					*/<br/>
+				}<br/>
+				<br/>
+				.learn-01-01-demo {<br/>
+					position: absolute;<br/>
+					top: 0;<br/>
+					left: 0;<br/>
+					<br/>
+					width: 100px;<br/>
+					height: 100px;<br/>
+					border-radius: 50%;<br/>
+					background: transparent;<br/>
+					border: 10px solid green;<br/>
+				}<br/>
+
+				<br/>
+				<hr/>
+				<br/>
+
+				&lt;div class=&quot;learn-01-01&quot;&gt;<br/>
+					&lt;div class=&quot;learn-01-01-contrast&quot;&gt;<br/>
+					&lt;/div&gt;<br/>
+					&lt;div class=&quot;learn-01-01-demo&quot;&gt;<br/>
+					&lt;/div&gt;<br/>
+				&lt;/div&gt;<br/>
+					
+			</div>
+	
+			<div class="data-code-result">
+
+				<div class="learn-01-01">
+					<div class="learn-01-01-contrast">
+					</div>
+					<div class="learn-01-01-demo">
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="data-code-description">
+				代码说明<br/>
+				<br/>
+				1、绿色的为案例<br/>
+				2、红色边框和背景图片的 div 为参照 div<br/>
+				3、外层 div 是把参照 div 和 案例 div 叠加，方便展示效果<br/>
+			</div>
+			
+		</div>
+
+		<h3> 方法二 </h3>
+		<p class="description">
+			两个圆嵌套实现<br/>
+			将圆环拆开来看，其实就是一个外圆和一个内圆嵌套组成，只要我们给外圆和内圆设置不同的背景色即可形成圆环。<br/>
+			具体通过父子元素嵌套实现。
+			
+		</p>
+		<div class="data">
+			
+			<div class="data-code-style">
+				<p>
+					
+				</p>
+			</div>
+	
+			<div class="data-code-result">
+
+				<div class="learn-01-02">
+					<div class="learn-01-02-contrast">
+					</div>
+					<div class="learn-01-02-demo">
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="data-code-description">
+				代码说明<br/>
+				<br/>
+				1、红色边框的 div 为参照 div<br/>
+				2、绿色的为案例<br/>
+				3、外层 div 是把参照 div 和 案例 div 叠加，方便展示效果<br/>
+			</div>
+			
+		</div>
+		
+		
+	</div>
+	
+	<br/><br/>
+	<hr/><hr/>
+	<br/><br/>
+
+	<div class="wrap">
+		<h1> CSS 画一个半圆环 </h1>
+
+		<p class="description">
+			CSS 的 clip-path 属性是 clip 属性的升级版，<br/>
+			它们的作用都是对元素进行 “剪裁”，<br/>
+			不同的是 clip 只能作用于 position 为 absolute 和 fixed 的元素且剪裁区域只能是正方形，<br/>
+			而 clip-path 更加强大，可以以任意形状去裁剪元素，且对元素的定位方式没有要求。<br/>
+			<br/>
+			基于这样的特性，clip-path 常用于实现一些炫酷的动画效果。<br/>
+		</p>
+
+		<div class="data">
+			
+			<div class="data-code-style">
+				<p>
+					style="<br/>
+					&emsp;width: 50px;<br/>
+					&emsp;height: 50px;<br/>
+					&emsp;border: 13px solid #0c73fe;<br/>
+					&emsp;border-radius: 50px;<br/>
+					&emsp;clip-path: polygon(100% 50%, 0 50%, 0 0, 100% 0);<br/>
+					"
+				</p>
+			</div>
+	
+			<div class="data-code-result">
+				<div
+					style="
+						width: 50px;
+						height: 50px;
+						border: 13px solid #0c73fe;
+						border-radius: 50px;
+						clip-path: polygon(100% 50%, 0 50%, 0 0, 100% 0);
+					"
+				>
+				</div>
+			</div>
+
+			<div class="data-code-description">
+				代码说明<br/>
+				<br/>
+				1、红色边框的 div 为参照 div<br/>
+				2、绿色的为案例<br/>
+				3、外层 div 是把参照 div 和 案例 div 叠加，方便展示效果<br/>
+			</div>
+			
+		</div>
+		
+		<div class="data">
+			<div class="data-code-style">
+				<p>
+					style="<br/>
+					&emsp;width: 50px;<br/>
+					&emsp;height: 50px;<br/>
+					&emsp;border: 13px solid #0c73fe;<br/>
+					&emsp;border-radius: 50px;<br/>
+					&emsp;clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);<br/>
+					"
+				</p>
+			</div>
+			
+	
+			<div class="data-code-result">
+				<div 
+					style="
+						width: 50px;
+						height: 50px;
+						border: 13px solid #0c73fe;
+						border-radius: 50px;
+						clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+					"
+				>
+				</div>
+			</div>
+
+			<div class="data-code-description">
+				代码说明<br/>
+				<br/>
+				1、红色边框的 div 为参照 div<br/>
+				2、绿色的为案例<br/>
+				3、外层 div 是把参照 div 和 案例 div 叠加，方便展示效果<br/>
+			</div>
+
+			
+		</div>
+
+	</div>
+
+
+
+
+
+	<br/>
+	<br/>
+	<br/>
+	<hr/>
+	<hr/>
+	<br/>
+	<br/>
+	<br/>
+	
+</body>
+</html>
