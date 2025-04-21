@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			#tree-menu {
+				font-family: Arial, sans-serif;
+				user-select: none;
+			}
+			#tree-menu ul {
+				list-style-type: none;
+				padding-left: 20px;
+			}
+			#tree-menu li {
+				margin: 5px 0;
+				cursor: pointer;
+			}
+			#tree-menu li span {
+				padding: 3px 5px;
+				border-radius: 3px;
+				display: inline-block;
+			}
+			#tree-menu li span:hover {
+				background-color: #f0f0f0;
+			}
+			.toggle-icon {
+				display: inline-block;
+				width: 15px;
+				margin-right: 5px;
+				font-size: 10px;
+			}
+			.selected {
+				background-color: #d4e6f7 !important;
+				color: #1a73e8;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tree-menu"></div>
+
+		<script>
+			const menuData = [
+				{
+					name: '部门管理',
+					children: [
+						{
+							name: '技术部',
+							children: [
+								{ name: '前端组' },
+								{ name: '后端组' }
+							]
+						},
+						{ name: '市场部' }
+					]
+				},
+				{
+					name: '系统设置',
+					children: [
+						{ name: '用户管理' },
+						{ name: '权限设置' }
+					]
+				}
+			];
+
+			function createTreeMenu(data, parentElement) {
+				const ul = document.createElement('ul');
+				
+				data.forEach(item => {
+					const li = document.createElement('li');
+					const span = document.createElement('span');
+					span.textContent = item.name;
+					li.appendChild(span);
+					
+					if (item.children && item.children.length > 0) {
+						const icon = document.createElement('i');
+						icon.className = 'toggle-icon';
+						icon.textContent = '▶';
+						span.prepend(icon);
+						
+						createTreeMenu(item.children, li);
+						li.lastElementChild.style.display = 'none';
+						
+						span.addEventListener('click', function(e) {
+							e.stopPropagation();
+							document.querySelectorAll('#tree-menu span').forEach(el => {
+								el.classList.remove('selected');
+							});
+							this.classList.add('selected');
+							
+							const subMenu = this.parentElement.querySelector('ul');
+							const icon = this.querySelector('.toggle-icon');
+							
+							if (subMenu.style.display === 'none') {
+								subMenu.style.display = 'block';
+								icon.textContent = '▼';
+							} else {
+								subMenu.style.display = 'none';
+								icon.textContent = '▶';
+							}
+						});
+					} else {
+						span.addEventListener('click', function(e) {
+							e.stopPropagation();
+							document.querySelectorAll('#tree-menu span').forEach(el => {
+								el.classList.remove('selected');
+							});
+							this.classList.add('selected');
+							console.log('选中菜单:', item.name);
+						});
+					}
+					
+					ul.appendChild(li);
+				});
+				
+				parentElement.appendChild(ul);
+			}
+
+			document.addEventListener('DOMContentLoaded', function() {
+				const menuContainer = document.getElementById('tree-menu');
+				createTreeMenu(menuData, menuContainer);
+			});
+		</script>
+	</body>
+</html>
