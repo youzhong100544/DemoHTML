@@ -113,6 +113,7 @@
 					nodeContent.addEventListener('click', function(e) {
 						e.stopPropagation();
 						console.log(`当前节点: "${item.name}", 深度: ${currentDepth}`);
+						alert(`当前节点: "${item.name}", 深度: ${currentDepth}`);
 					});
 					
 					li.appendChild(nodeContent);
