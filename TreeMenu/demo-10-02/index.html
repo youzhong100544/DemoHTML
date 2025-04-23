@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			#tree-menu {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+			}
+
+			.tree-ul {
+				list-style-type: none;
+				padding-left: 20px;
+			}
+
+			.tree-li {
+				margin: 5px 0;
+			}
+
+			.node-content {
+				padding: 5px 10px;
+				background-color: #f5f5f5;
+				border-radius: 3px;
+				cursor: pointer;
+				display: inline-block;
+			}
+
+			.node-content:hover {
+				background-color: #e0e0e0;
+			}
+
+			.toggle-btn {
+				display: inline-block;
+				width: 20px;
+				text-align: center;
+				margin-right: 5px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			button {
+				margin: 10px;
+				padding: 8px 15px;
+				background-color: #4CAF50;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+			}
+
+			button:hover {
+				background-color: #45a049;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tree-menu"></div>
+
+		<script>
+			// 树形菜单数据
+			const menuData = [
+				{
+					name: '根节点1',
+					children: [
+						{
+							name: '子节点1-1',
+							children: [
+								{ name: '叶子节点1-1-1' },
+								{ name: '叶子节点1-1-2' }
+							]
+						},
+						{ name: '子节点1-2' }
+					]
+				},
+				{
+					name: '根节点2',
+					children: [
+						{ name: '子节点2-1' },
+						{ 
+							name: '子节点2-2',
+							children: [
+								{ name: '叶子节点2-2-1' },
+								{ 
+									name: '叶子节点2-2-2',
+									children: [
+										{ name: '深层节点2-2-2-1' }
+									]
+								}
+							]
+						}
+					]
+				}
+			];
+
+			// 递归生成树形菜单
+			function createTreeMenu(data, currentDepth = 0) {
+				const ul = document.createElement('ul');
+				ul.className = 'tree-ul';
+				
+				data.forEach(item => {
+					const li = document.createElement('li');
+					li.className = 'tree-li';
+					li.dataset.depth = currentDepth; // 存储当前深度
+					
+					const nodeContent = document.createElement('div');
+					nodeContent.className = 'node-content';
+					nodeContent.textContent = `${'	'.repeat(currentDepth)}${item.name} (深度: ${currentDepth})`;
+					
+					// 点击事件 - 打印当前深度
+					nodeContent.addEventListener('click', function(e) {
+						e.stopPropagation();
+						console.log(`当前节点: "${item.name}", 深度: ${currentDepth}`);
+					});
+					
+					li.appendChild(nodeContent);
+					
+					// 如果有子节点，递归创建
+					if (item.children && item.children.length > 0) {
+						// 添加展开/折叠控制按钮
+						const toggleBtn = document.createElement('span');
+						toggleBtn.className = 'toggle-btn';
+						toggleBtn.textContent = '[+]';
+						nodeContent.prepend(toggleBtn);
+						
+						// 递归创建子菜单
+						const childrenContainer = createTreeMenu(item.children, currentDepth + 1);
+						li.appendChild(childrenContainer);
+						childrenContainer.style.display = 'none'; // 默认折叠
+						
+						// 展开/折叠功能
+						toggleBtn.addEventListener('click', function(e) {
+							e.stopPropagation();
+							if (childrenContainer.style.display === 'none') {
+								childrenContainer.style.display = 'block';
+								toggleBtn.textContent = '[-]';
+							} else {
+								childrenContainer.style.display = 'none';
+								toggleBtn.textContent = '[+]';
+							}
+						});
+					}
+					
+					ul.appendChild(li);
+				});
+				
+				return ul;
+			}
+
+			// 初始化树形菜单
+			document.addEventListener('DOMContentLoaded', function() {
+				const container = document.getElementById('tree-menu');
+				const ul = createTreeMenu(menuData);
+				container.appendChild(ul);
+			});
+
+
+			// ------------------------------------------------------
+
+
+			// 添加打印完整结构的按钮
+			document.addEventListener('DOMContentLoaded', function() {
+				// 添加打印完整结构的按钮
+				const printBtn = document.createElement('button');
+				printBtn.textContent = '打印完整树结构';
+				printBtn.addEventListener('click', printTreeStructure);
+				// document.body.prepend(printBtn);
+				document.body.append(printBtn);
+			});
+
+			// 打印完整树结构函数
+			function printTreeStructure() {
+				console.log('完整树结构:');
+				printNode(menuData, 0);
+			}
+
+			// 递归打印节点
+			function printNode(nodes, depth) {
+				/*
+					repeat()
+						repeat() 方法用于构造并返回一个新字符串，其中包含指定数量的所调用的字符串副本
+				
+					示例
+						console.log("Hello".repeat(3);); // 输出: HelloHelloHello
+				
+					语法
+						string.repeat(count)
+					
+					参数
+						count: 必需。表示在新构造的字符串中重复了多少遍原字符串。
+
+					返回值
+						返回包含指定字符串的指定数量副本的新字符串。
+
+					异常
+						RangeError: 如果 count 为负值，或者 count 超过了字符串的最大长度，将抛出错误
+				*/
+
+				const indent = '	'.repeat(depth);
+				nodes.forEach(node => {
+					console.log(`${indent}${node.name} (深度: ${depth})`);
+					if (node.children) {
+						printNode(node.children, depth + 1);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

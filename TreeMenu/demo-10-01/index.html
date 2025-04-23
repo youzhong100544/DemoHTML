@@ -11,21 +11,22 @@
 				user-select: none;
 			}
 			#tree-menu ul {
-				list-style-type: none;
+				list-style: none;
 				padding-left: 20px;
 			}
-			#tree-menu li {
+			#tree-menu ul li {
 				margin: 5px 0;
 				cursor: pointer;
 			}
-			#tree-menu li span {
+			#tree-menu ul li span {
 				padding: 3px 5px;
 				border-radius: 3px;
 				display: inline-block;
 			}
-			#tree-menu li span:hover {
+			#tree-menu ul li span:hover {
 				background-color: #f0f0f0;
 			}
+
 			.toggle-icon {
 				display: inline-block;
 				width: 15px;
@@ -65,7 +66,7 @@
 				}
 			];
 
-			function createTreeMenu(data, parentElement) {
+			function createTreeMenu(data) {
 				const ul = document.createElement('ul');
 				
 				data.forEach(item => {
@@ -80,7 +81,9 @@
 						icon.textContent = '▶';
 						span.prepend(icon);
 						
-						createTreeMenu(item.children, li);
+						const childList = createTreeMenu(item.children);
+						li.appendChild(childList);
+						// 子列表显示/隐藏
 						li.lastElementChild.style.display = 'none';
 						
 						span.addEventListener('click', function(e) {
@@ -109,18 +112,19 @@
 							});
 							this.classList.add('selected');
 							console.log('选中菜单:', item.name);
+							alert(`选中菜单:${item.name}`);
 						});
 					}
 					
 					ul.appendChild(li);
 				});
-				
-				parentElement.appendChild(ul);
+				return ul;
 			}
 
 			document.addEventListener('DOMContentLoaded', function() {
 				const menuContainer = document.getElementById('tree-menu');
-				createTreeMenu(menuData, menuContainer);
+				let ul = createTreeMenu(menuData);
+				menuContainer.appendChild(ul);
 			});
 		</script>
 	</body>
