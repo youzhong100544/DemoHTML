@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			/* Start - 初始化样式 */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			ul {
+				list-style: none;
+			}
+			/* End - 初始化样式 */
+
+			:root {
+				--tabs-width: 512px;
+				--tabs-height: 512px;
+
+				--tabs-title-width: var(--tabs-width);
+				--tabs-title-height: 40px;
+				--tabs-title-item-width: 100px;
+				--tabs-title-item-height: var(--tabs-title-height);
+
+				/* --tabs-content-width: var(--tabs-width); */
+				/* --tabs-content-height: calc(512px - 40px); */
+				--tabs-content-height: calc(var(--tabs-height) - var(--tabs-title-height));
+
+				--tabs-content-item-width: var(--tabs-width);
+			}
+
+			.tabs {
+				width: var(--tabs-width);
+				height: var(--tabs-height);
+
+				border: 1px solid black;
+
+				overflow: hidden;
+			}
+
+			.tabs label {
+				display: inline-block;
+
+				width: var(--tabs-title-item-width);
+				height: var(--tabs-title-item-height);
+
+				background-color: gray;
+
+				/* border-radius: 10px; */
+				border-radius: 10px 10px 0 0;
+
+				text-align: center;
+				line-height: var(--tabs-title-item-height);
+
+				cursor: pointer;
+
+				/* margin: 0; */
+				/* label 标签有间距，可以通过 浮动 去掉 */
+				/* float: left; */
+			}
+
+			.tabs label:hover {
+				background-color: orange;
+			}
+
+			.tabs input {
+				display: none;
+			}
+
+			/* 选项被选中时，背景颜色为 orange */
+			#ck1:checked ~ label[for="ck1"] {
+				background-color: orange;
+			}
+			#ck2:checked ~ label[for="ck2"] {
+				background-color: orange;
+			}
+			#ck3:checked ~ label[for="ck3"] {
+				background-color: orange;
+			}
+			#ck4:checked ~ label[for="ck4"] {
+				background-color: orange;
+			}
+
+			ul.content {
+				/* content 太宽了，所以 tabs 超出部分需要隐藏；overflow: hidden; */
+				/* width: var(--tabs-content-width); */
+				width: calc(var(--tabs-content-item-width) * 4);
+				height: var(--tabs-content-height);
+
+				background-color: orange;
+
+				float: left;
+
+				transition: 0.3s;
+			}
+
+			ul.content li {
+				/* 每项宽500px */
+				width: var(--tabs-content-item-width);
+				height: calc(512px - 40px);
+
+				float: left;
+			}
+
+			/* 点击选项后，ul 位置变化 */
+			#ck1:checked ~ ul {margin-left: 0;}
+			/* #ck1:checked ~ ul {margin-left: calc(var(--tabs-content-item-width) * 0) ;} */
+			#ck2:checked ~ ul {margin-left: calc(var(--tabs-content-item-width) * -1) ;}
+			#ck3:checked ~ ul {margin-left: calc(var(--tabs-content-item-width) * -2) ;}
+			#ck4:checked ~ ul {margin-left: calc(var(--tabs-content-item-width) * -3) ;}
+		</style>
+
+		<script>
+
+		</script>
+
+	</head>
+	<body>
+		<!-- 
+			<label> 标签 for 属性
+				
+				什么是 label 标签？
+					在开始讨论“for”属性之前，我们先来了解一下 label 标签。
+					在HTML中，label标签用于为表单元素创建标签。
+					这个标签可以将文本和表单元素关联起来，使得用户点击标签时可自动聚焦到相应的表单元素，从而提升用户体验。
+					一般情况下，我们会将输入框、复选框、单选框等表单元素放在 label 标签内。
+
+				标签的 “for” 属性是什么？
+					label 标签的 “for” 属性用于指定与之关联的表单元素的 id。
+					通过将 label 的 “for” 属性设置为对应表单元素的 id，我们就可以实现点击标签时获取焦点或选中相应的表单元素。
+					这种关联使得我们可以扩大用户点击区域，提升用户的交互体验，并且使得网页更加易用。
+		-->
+		
+		<!-- 
+			先做 4 个选项卡 
+			每个选项由 input 和一个 label 组成
+
+			隐藏 input
+		-->
+		<div class="tabs">
+			<!-- 标题 -->
+			<!-- label 标签 要放在 input 标签 后面 -->
+			<input type="radio" id="ck1" name="mytab" checked><!-- 设置初始状态 -->
+			<label for="ck1">春</label>
+
+			<input type="radio" id="ck2" name="mytab">
+			<label for="ck2">夏</label>
+
+			<input type="radio" id="ck3" name="mytab">
+			<label for="ck3">秋</label>
+			
+			<input type="radio" id="ck4" name="mytab">
+			<label for="ck4">冬</label>
+
+
+			<!-- 内容 -->
+			<ul class="content">
+				<!-- 添加4个内容块 -->
+					<li>
+						春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春
+						春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春春
+					</li>
+					<li>夏</li>
+					<li>秋</li>
+					<li>冬冬冬冬冬冬冬冬冬冬冬冬冬冬冬冬</li>
+			</ul>
+		</div>
+	</body>
+</html>

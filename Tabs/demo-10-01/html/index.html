@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			:root {
+				--tabs-width: 100%;
+				--tabs-height: 256px;
+
+				--tabs-header-height: 64px;
+
+				--tabs-content-height: calc(var(--tabs-height) - var(--tabs-header-height));
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			.tabs {
+				width: 100%;
+				height: var(--tabs-height);
+
+				border: 1px solid black;
+			}
+
+			.tabs .tabs-header {
+				width: 100%;
+				height: var(--tabs-header-height);
+				
+				background-color: blue;
+
+				/* border: 1px solid red; */
+			}
+
+			.tabs .tabs-content {
+				width: 100%;
+				height: var(--tabs--content-height);
+
+				/* border: 1px solid green; */
+			}
+		</style>
+
+		<script>
+
+		</script>
+
+	</head>
+	<body>
+		<div class="tabs">
+			<div class="tabs-header">
+			
+			</div>
+			<div class="tabs-content">
+			
+			</div>
+		</div>
+	</body>
+</html>
