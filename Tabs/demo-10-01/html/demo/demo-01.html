@@ -336,54 +336,6 @@
 
 			/* End - transition（过渡）、transform（变换）、translate（移动）、animation（动画） */
 
-
-
-
-			/* ---------------------------------------------- */
-
-			/* 相关操作按钮样式 */
-
-			/* 1、清楚按钮默认样式 */
-			.operation-button button {
-				/* 去掉默认边框 */
-				border: none;
-				outline: none;
-				/* 去掉默认背景 */
-				background-color: transparent;
-
-				padding: 0;
-				margin: 0;
-				border-radius: 0;
-				box-shadow: none;
-			}
-
-			.operation-button {
-				margin-top: 50px;
-			}
-
-			.operation-button button {
-				width: 100px; 
-				height: 60px; 
-				margin: 20px; 
-
-				color: white;
-				font-size: 32px; 
-
-				border: 1px solid black; 
-				background-color: blue; 
-				
-				cursor: pointer; 
-			}
-
-			.operation-button button {
-				transition: background-color 0.3s ease;
-			}
-
-			.operation-button button:hover {
-				background-color: green;
-				color: white;
-			}
-
 		</style>
 
 		<script>
@@ -489,6 +441,9 @@
 		
 			/* End - JavaScript 监听窗口变化 */
 
+		</script>
+		
+		<script>
 
 			/* Start - DOM元素宽度属性：clientWidth、offsetWidth 和 scrollWidth */
 
@@ -881,7 +836,9 @@
 
 	</head>
 	<body>
-		<!-- 注释空白 -->
+		
+		<!-- 注释 -->
+
 		<div class="tabs">
 			<div class="tabs-header">
 				<div class="header-operation-button operation-previous-page">
@@ -956,13 +913,7 @@
 			</div>
 		</div>
 
-
-		<div class="operation-button">
-			<button>添加</button> 
-
-			<button>关闭</button>
-
-			<button>切换</button>
-		</div>
+		<!-- 注释 -->
+		
 	</body>
 </html>

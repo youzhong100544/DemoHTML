@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+		</style>
+
+		<script>
+
+			/* Start - 
+				DOM 元素属性：
+					clientLeft
+					clientTop
+					offsetLeft
+					offsetTop
+					scrollLeft
+					scrollTop
+
+					clientWidth
+					clientHeight
+					offsetWidth
+					offsetHeight
+					scrollWidth
+					scrollHeight 
+			*/
+
+			/*
+			
+				在Web开发中，经常需要处理DOM元素的尺寸，特别是宽度。
+				理解clientWidth、offsetWidth和scrollWidth之间的区别对于精确控制布局非常重要。
+
+				clientWidth
+
+					clientWidth属性是一个只读属性，它返回元素的内部宽度，包括内边距（padding），但不包括垂直滚动条（如果有）、边框（border）和外边距（margin）。
+					这个属性的值反映了元素的可视区域的宽度。
+					如果元素的box-sizing属性设置为border-box，那么clientWidth就等于元素的CSS宽度减去左右边框的宽度。
+
+					例如，如果一个元素的CSS宽度为200px，左右内边距各为10px，没有垂直滚动条，那么clientWidth就是220px（200 + 10 + 10）。
+
+				offsetWidth
+
+					offsetWidth属性也是一个只读属性，它返回元素的布局宽度。
+					与clientWidth不同，offsetWidth包括元素的边框、水平方向的内边距、垂直滚动条（如果有的话），以及CSS设置的宽度。
+					这个属性的值反映了元素的整体宽度，包括所有可见和不可见的部分。
+
+					如果继续使用上面的例子，但这次元素有左右边框各为10px，那么offsetWidth就是240px（200 + 10 + 10 + 10 + 10）。
+
+				scrollWidth
+
+					scrollWidth属性表示元素内容区的实际宽度，包括由于溢出而不可见的部分。
+					这个属性的值通常用于确定是否需要滚动条。
+					如果元素内容没有溢出，scrollWidth的值与clientWidth相同。
+					如果有溢出，scrollWidth会大于clientWidth，因为它包括了隐藏的溢出内容。
+
+					在上述例子中，如果元素内容宽度超过了可视区域，导致出现了水平滚动条，那么scrollWidth可能会大于240px，具体值取决于内容的实际宽度。
+			*/
+
+			/* End - DOM元素宽度属性：clientWidth、offsetWidth 和 scrollWidth */
+			
+
+			function printElementSizeInfo(element) {
+
+				console.log(`clientLeft:${element.clientLeft}`);
+				console.log(`clientTop:${element.clientTop}`);
+
+				console.log(`offsetLeft:${element.offsetLeft}`);
+				console.log(`offsetTop:${element.offsetTop}`);
+
+				console.log(`scrollLeft:${element.scrollLeft}`);
+				console.log(`scrollTop:${element.scrollTop}`);
+				
+				console.log(`clientWidth:${element.clientWidth}`);
+				console.log(`clientHeight:${element.clientHeight}`);
+
+				console.log(`offsetWidth:${element.offsetWidth}`);
+				console.log(`offsetHeight:${element.offsetHeight}`);
+
+				console.log(`scrollWidth:${element.scrollWidth}`);
+				console.log(`scrollHeight:${element.scrollHeight}`);
+
+				console.log("-----------------------------------------------------------------");
+				console.log("-----------------------------------------------------------------");
+				
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+
+				let element_div_test_00 = document.getElementById('test_00');
+				console.log("test_00");
+				printElementSizeInfo(element_div_test_00);
+
+			});
+		</script>
+
+	</head>
+	<body>
+		<!-- 注释 -->
+
+		<div 
+			id="test_00" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				background-color: red; 
+			"
+		>
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: red;">id="test_00"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>源码</h3>
+					<p>
+						&lt;style&gt; <br>
+						&emsp;* { <br>
+							&emsp;&emsp;margin: 0; <br>
+							&emsp;&emsp;padding: 0; <br>
+						&emsp;} <br>
+						&lt;/style&gt; <br>
+						
+						<br>
+
+						&lt;div <br>
+							&emsp;id=&quot;test_00&quot; <br>
+							&emsp;style=&quot; <br>
+								&emsp;&emsp;width: 300px; <br>
+								&emsp;&emsp;height: 200px; <br>
+								&emsp;&emsp;background-color: red; <br>
+							&emsp;&quot; <br>
+						&gt; <br>
+						&lt;/div&gt;
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:0 <br>
+						clientTop:0 <br>
+						offsetLeft:0 <br>
+						offsetTop:0 <br>
+						scrollLeft:0 <br>
+						scrollTop:0 <br>
+						clientWidth:300 <br>
+						clientHeight:200 <br>
+						offsetWidth:300 <br>
+						offsetHeight:200 <br>
+						scrollWidth:300 <br>
+						scrollHeight:200 <br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- 注释 -->
+	</body>
+</html>

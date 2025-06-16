@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			/* Start - 初始化样式 */
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			ul {
+				list-style: none;
+			}
+			/* End - 初始化样式 */
+
+			.container {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+
+			.container ul {
+				width: 150px;
+				height: 150px;
+				background-color: blue;
+			}
+
+			.container ul li {
+				width: 100px;
+				height: 60px;
+				background-color: green;
+
+				border: 1px solid black;
+
+				cursor: pointer;
+			}
+		</style>
+
+		<script>
+
+			function printElementSizeInfo(element) {
+
+				console.log(`clientLeft:${element.clientLeft}`);
+				console.log(`clientTop:${element.clientTop}`);
+
+				console.log(`offsetLeft:${element.offsetLeft}`);
+				console.log(`offsetTop:${element.offsetTop}`);
+
+				console.log(`scrollLeft:${element.scrollLeft}`);
+				console.log(`scrollTop:${element.scrollTop}`);
+				
+				console.log(`clientWidth:${element.clientWidth}`);
+				console.log(`clientHeight:${element.clientHeight}`);
+
+				console.log(`offsetWidth:${element.offsetWidth}`);
+				console.log(`offsetHeight:${element.offsetHeight}`);
+
+				console.log(`scrollWidth:${element.scrollWidth}`);
+				console.log(`scrollHeight:${element.scrollHeight}`);
+
+				console.log("-----------------------------------------------------------------");
+				console.log("-----------------------------------------------------------------");
+				
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+
+				let _ul_element = document.querySelector('.container ul');
+
+				if (_ul_element) {
+					let _li_array = _ul_element.children;
+
+					if (_li_array.length > 0) {
+						for (let index = 0; index < _li_array.length; index++) {
+							const element = _li_array[index];
+
+							element.onclick = function() {
+								console.log(`-------- li[${index}] --------`);
+								printElementSizeInfo(element);
+							};
+						}
+					
+					}
+				}
+			});
+		</script>
+
+	</head>
+	<body>
+		<!-- 注释 -->
+
+		<div class="container">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</div>
+
+		
+
+		<!-- 注释 -->
+	</body>
+</html>

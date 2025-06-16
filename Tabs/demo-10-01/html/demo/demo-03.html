@@ -99,6 +99,10 @@
 			}
 
 
+			/* ---------------------------------------------- */
+			/* ---------------------------------------------- */
+
+
 			.tabs > .tabs-header {
 				font-size: 32px; 				/* 调试用 */
 				font-weight: 600; 				/* 调试用 */
@@ -141,8 +145,6 @@
 				padding: 0;
 
 			}
-
-			
 
 			/* Start - ul 横向排列，且不换行 */
 			/*
@@ -317,12 +319,12 @@
 
 			/* Start - 关闭按钮 - 动画 - 呼吸效果 */
 			.tabs > .tabs-header > .header-list > ul > li > span.close.animation-style-4:hover {
-				animation: scale-breathe 2s ease-in-out infinite;
+				animation: breathe-scale 2s ease-in-out infinite;
 			}
 			/* End - 关闭按钮 - 动画 - 旋转放大 */
 
 
-			@keyframes scale-breathe {
+			@keyframes breathe-scale {
 				0% {
 					transform: scale(1);
 				}
@@ -337,9 +339,25 @@
 			/* End - transition（过渡）、transform（变换）、translate（移动）、animation（动画） */
 
 
+			/* ---------------------------------------------- */
+			/* ---------------------------------------------- */
+
+
+			.tabs > .tabs-content > .content {
+				width: 100%;
+				height: 100%;
+
+				display: none;
+			}
+
+			.tabs > .tabs-content > .content.active {
+				display: block;
+			}
 
 
 			/* ---------------------------------------------- */
+			/* ---------------------------------------------- */
+
 
 			/* 相关操作按钮样式 */
 
@@ -489,6 +507,9 @@
 		
 			/* End - JavaScript 监听窗口变化 */
 
+		</script>
+		
+		<script>
 
 			/* Start - DOM元素宽度属性：clientWidth、offsetWidth 和 scrollWidth */
 
@@ -638,78 +659,118 @@
 				};
 			}
 
-			document.addEventListener('DOMContentLoaded', function () {
-				
-				let _header_list = document.querySelector('.tabs > .tabs-header > .header-list');
-				let _header_list_ul = document.querySelector('.tabs > .tabs-header > .header-list > ul');
-				
-				let _header_list_ul_offsetWidth = _header_list_ul.offsetWidth
-				let _header_list_ul_scrollWidth = _header_list_ul.scrollWidth
+			let _tabs = {
 
-				// console.log("div.header-list size info");
-				// printElementSizeInfo(_header_list);
-				// console.log("div.header-list > ul size info");
-				// printElementSizeInfo(_header_list_ul);
-
-				let _operation_previous_page = document.querySelector('.header-operation-button.operation-previous-page');
-				let _operation_previous = document.querySelector('.header-operation-button.operation-previous');
-				let _operation_next = document.querySelector('.header-operation-button.operation-next');
-				let _operation_next_page = document.querySelector('.header-operation-button.operation-next-page');
-				let _operation_list = document.querySelector('.header-operation-button.operation-list');
-
-
-				/* 
-					判断当前点击元素在界面中显示的位置 
+				/**
+				 * 初始化变量
+				 */
+				_fn_init: function () {
 					
-					条件
-						a = 判断左边界（li 元素的 offsetLeft 减去 ul 元素的 scrollLeft 大于等于 0）
-						b = 判断右边界（li 元素的 offsetLeft + offsetWidth 减去 ul 元素的 scrollLeft 小于等于 ul 元素的 offsetWidth）
+					return {
+						_tabs_header: document.querySelector('.tabs > .tabs-header'),
+						
+						_operation_previous_page: document.querySelector('.header-operation-button.operation-previous-page'),
+						_operation_previous: document.querySelector('.header-operation-button.operation-previous'),
+						_operation_next: document.querySelector('.header-operation-button.operation-next'),
+						_operation_next_page: document.querySelector('.header-operation-button.operation-next-page'),
+						_operation_list: document.querySelector('.header-operation-button.operation-list'),
 
-					如果
-						a，b 同时成立，则当前点击元素完全显示在界面中；
-						a 不成立，b 成立，则当前点击元素靠近左边并且不完全显示在界面中；
-						a 成立，b 不成立，则当前点击元素靠近右边并且不完全显示在界面中。
-				*/
-				function checkElementAllShowInView(element) {
-					// printElementSizeInfo(element);
-					// console.log("---");
-					// printElementSizeInfo(element.parentNode);
+						_header_list: document.querySelector('.tabs > .tabs-header > .header-list'),
+						_header_list_ul: document.querySelector('.tabs > .tabs-header > .header-list > ul'),
+
+						_header_list_ul_li_list: document.querySelectorAll('.tabs > .tabs-header > .header-list > ul > li'),
+
+
+						/* ---------------------------- */
+
+						_tabs_content: document.querySelector('.tabs > .tabs-content'),
+						_content_list: document.querySelectorAll('.tabs > .tabs-content > .content'),
+
+					}
+				},
+
+				
+
+				/**
+				 * 点击 标签页，修改相关样式
+				 *
+				 * @param element
+				 *          ul 下的 li 标签
+				 */
+				updateHeaderItemStyle: function (element) {
+					if (element) {
+						// 如果点击的元素 class 不包含 active
+						if (!element.classList.contains('active')) {
+							let _li_list = element.parentNode.children;
+							Array.from(_li_list).forEach(_li_Element => {
+								_li_Element.classList.remove('active');
+							})
+							element.classList.add('active');
+						}
+					}
+				},
+
+				/**
+				 * 判断当前点击元素在界面中显示的位置 
+				 * 
+				 * 条件
+				 * 		a = 判断左边界（li 元素的 offsetLeft 减去 ul 元素的 scrollLeft 大于等于 0）
+				 * 		b = 判断右边界（li 元素的 offsetLeft + offsetWidth 减去 ul 元素的 scrollLeft 小于等于 ul 元素的 offsetWidth）
+				 * 	
+				 * 如果
+				 * 		a，b 同时成立，则当前点击元素完全显示在界面中；
+				 * 		a 不成立，b 成立，则当前点击元素靠近左边并且不完全显示在界面中；
+				 * 		a 成立，b 不成立，则当前点击元素靠近右边并且不完全显示在界面中。
+				 *
+				 * @param element
+				 *          ul 下的 li 标签
+				 */
+				checkElementAllShowInView: function (element) {
 
 					// 判断左边界
 					let a = (element.offsetLeft - element.parentNode.scrollLeft) >= 0
 					// 判断右边界
 					let b = ((element.offsetLeft + element.offsetWidth) - element.parentNode.scrollLeft) <= element.parentNode.offsetWidth
+					
 					if (a && b) {
-						console.log("当前点击元素是否完全在界面中");
+						// console.log("当前点击元素是否完全在界面中");
 						return 0;
 					}
 
 					if (!a && b) {
-						console.log("当前点击元素 - 在左边并且不完全显示在界面中");
+						// console.log("当前点击元素 - 在左边并且不完全显示在界面中");
 						return 1;
 					}
 
 					if (a && !b) {
-						console.log("当前点击元素 - 在右边并且不完全显示在界面中");
+						// console.log("当前点击元素 - 在右边并且不完全显示在界面中");
 						return 2;
 					}
 
 					console.error("当前点击元素 - 不显示在界面中");
 					return 3;
-				}
+				},
 
 				/**
-				 * 移动
+				 * 通过修改 scrollLeft 属性值移动 ul 标签
+				 *
+				 * @param element
+				 *          ul 下的 li 标签
 				 */
-				function move(element) {
-					let result = checkElementAllShowInView(element);
+				moveTabsHeader: function (element) {
+					let result = this.checkElementAllShowInView(element);
+
+					let _header_list_ul = element.parentNode;
+
+					let _header_list_ul_offsetWidth = _header_list_ul.offsetWidth
+					let _header_list_ul_scrollWidth = _header_list_ul.scrollWidth
 
 					if (result === 0) {
-						console.log("当前点击元素是否完全在界面中,不需要移动");
+						// console.log("当前点击元素是否完全在界面中,不需要移动");
 
 					}
 					if (result === 1) {
-						console.log("当前点击元素 - 在左边并且不完全显示在界面中,需向右移动");
+						// console.log("当前点击元素 - 在左边并且不完全显示在界面中,需向右移动");
 						/* 
 							向右移动
 								移动距离
@@ -726,7 +787,7 @@
 
 					}
 					if (result === 2) {
-						console.log("当前点击元素 - 在右边并且不完全显示在界面中,需向左移动");
+						// console.log("当前点击元素 - 在右边并且不完全显示在界面中,需向左移动");
 						/* 
 							向左移动
 								移动距离
@@ -742,7 +803,200 @@
 
 						_header_list_ul.scrollLeft = (element.offsetLeft + element.offsetWidth) - _header_list_ul_offsetWidth + margin_distance;
 					}
-				}
+				},
+
+
+				/**
+				 * 显示隐藏内容
+				 */
+				showHideContent: function (element) {
+					let childElementName = element.querySelector('.name');
+					let _header_item_id = childElementName.dataset.headerItemId;
+
+					let querySelectorStr = `.tabs > .tabs-content > .content[data-content-item-id="${_header_item_id}"]`;
+					let _content_item_id_element = document.querySelector(querySelectorStr);
+
+					let _content_list = document.querySelectorAll('.tabs > .tabs-content > .content');
+					
+					// console.log(_content_item_id_element);
+					// console.log(_content_list.length);
+
+					Array.from(_content_list).forEach(_content_item => {
+						_content_item.classList.remove('active');
+					})
+					_content_item_id_element.classList.add('active');
+				},
+
+
+				/**
+				 * 获取时间戳
+				 */
+				getCurrentTimestamp: function (element) {
+					//  方式 1
+					let timestamp_1 = Date.parse(new Date());
+					// console.log(timestamp_1); 1749994310000
+
+					//  方式 2
+					let timestamp_2 = new Date().getTime();
+					// console.log(timestamp_2); 1749994310963
+
+					//  方式 3
+					let timestamp_3 = (new Date()).valueOf();
+					// console.log(timestamp_3); 1749994310963
+
+					return timestamp_1;
+				},
+
+
+				/**
+				 * 创建 标签页 
+				 */
+				createTabsItem: function () {
+
+					let _header_list_ul = this._fn_init()._header_list_ul;
+					let _tabs_content = _tabs._fn_init()._tabs_content;
+
+					
+					let _header_item_li = document.createElement("li");
+
+					let _li_span_name = document.createElement("span");
+					_li_span_name.className  = "name";
+					_li_span_name.innerText = _tabs.getCurrentTimestamp();
+					_li_span_name.dataset.headerItemId = _tabs.getCurrentTimestamp();
+
+					let _li_span_close = document.createElement("span");
+					_li_span_close.setAttribute("class", "close");
+					_li_span_close.textContent = "×";
+					_li_span_close.classList.add('animation-style-4');
+
+					
+					_header_item_li.appendChild(_li_span_name);
+					_header_item_li.appendChild(_li_span_close);
+
+					_header_list_ul.appendChild(_header_item_li);
+
+
+					let _content_div = document.createElement("div");
+					_content_div.className  = "content";
+					_content_div.dataset.contentItemId = _tabs.getCurrentTimestamp();
+					_content_div.innerText = _tabs.getCurrentTimestamp();
+
+					_tabs_content.appendChild(_content_div);
+
+					// 1、点击 标签页，修改相关样式
+					this.updateHeaderItemStyle(_header_item_li)
+
+					// 2、移动
+					this.moveTabsHeader(_header_item_li);
+
+					// 3、内容的显/隐
+					this.showHideContent(_header_item_li);
+
+					// 4、绑定关闭
+					this.deleteTabsItem(_li_span_close);
+
+					// 添加点击事件
+					_header_item_li.onclick = function () {
+						// 1、修改样式
+						_tabs.updateHeaderItemStyle(_header_item_li)
+
+						// 2、移动
+						_tabs.moveTabsHeader(_header_item_li);
+
+						// 3、内容的显/隐
+						_tabs.showHideContent(_header_item_li);
+						
+					}
+				},
+
+				/**
+				 * 删除 标签页 
+				 * 
+				 * 点击 <span class="close">×</span>
+				 *
+				 * @param element
+				 *          ul 下的 li 标签 的 class='close' 的 span 标签
+				 */
+				deleteTabsItem: function (element) {
+					element.onclick = function(event) {
+						// 阻止事件冒泡
+						event.stopPropagation();
+
+						// <li>
+						// 	<span class="name" data-header-item-id="home-523455">主页 - 可关闭</span>
+						//  <span class="close">×</span>
+						// </li>
+						
+
+						// 点击 <span class="close">×</span>
+
+						// 1、获取 父元素 <li>
+						let _header_item_li = element.parentNode;
+
+						// 2、获取 兄弟元素 <span class="name" data-header-item-id="home-523455">主页</span>
+						let _header_item_span_name_element = element.previousElementSibling;
+
+						// 3、获取 兄弟元素 的 data-header-item-id="home-523455" 属性值
+						let _header_item_id = _header_item_span_name_element.dataset.headerItemId;
+
+						// 4、查找 对应的内容块
+						let querySelectorStr = `.tabs > .tabs-content > .content[data-content-item-id="${_header_item_id}"]`;
+						let _content_item = document.querySelector(querySelectorStr);
+
+						// 5、关闭
+						_header_item_li.remove();
+						_content_item.remove();
+					}
+					
+				},
+
+				/**
+				 * 切换 标签页 
+				 */
+				switchTabsItem: function (element) {
+					element.addEventListener("click", function() {
+						// 1、修改样式
+						// 如果点击的元素 class 不包含 active
+						_tabs.updateHeaderItemStyle(element);
+
+						// 2、移动
+						/* 调试 - 移动前打印信息 */
+						// console.log("调试 - 移动前打印信息");
+						// printElementSizeInfo(_header_list_ul);
+						// console.log("------");
+						// printElementSizeInfo(element);
+
+						_tabs.moveTabsHeader(element);
+
+						/* 调试 - 移动后打印信息 */
+						// console.log("调试 - 移动后打印信息");
+						// printElementSizeInfo(_header_list_ul);
+						// console.log("------");
+						// printElementSizeInfo(element);
+
+						// 3、内容块的显/隐
+						_tabs.showHideContent(element);
+					});
+				},
+				
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+				
+				let _header_list = document.querySelector('.tabs > .tabs-header > .header-list');
+				let _header_list_ul = document.querySelector('.tabs > .tabs-header > .header-list > ul');
+				
+				let _operation_previous_page = document.querySelector('.header-operation-button.operation-previous-page');
+				let _operation_previous = document.querySelector('.header-operation-button.operation-previous');
+				let _operation_next = document.querySelector('.header-operation-button.operation-next');
+				let _operation_next_page = document.querySelector('.header-operation-button.operation-next-page');
+				let _operation_list = document.querySelector('.header-operation-button.operation-list');
+
+
+				let _header_list_ul_li_list = document.querySelectorAll('.tabs > .tabs-header > .header-list > ul > li');
+
+				let _content_list = document.querySelectorAll('.tabs > .tabs-content > .content');
+
 
 				/* 选项卡-子项 绑定点击事件 */
 				if (_header_list_ul) {
@@ -759,12 +1013,7 @@
 							element.addEventListener("click", function() {
 								// 1、修改样式
 								// 如果点击的元素 class 不包含 active
-								if (!element.classList.contains('active')) {
-									Array.from(_li_Element_array).forEach(_li_Element => {
-										_li_Element.classList.remove('active');
-									})
-									element.classList.add('active');
-								}
+								_tabs.updateHeaderItemStyle(element)
 
 								// 2、移动
 								/* 调试 - 移动前打印信息 */
@@ -773,7 +1022,7 @@
 								// console.log("------");
 								// printElementSizeInfo(element);
 
-								move(element);
+								_tabs.moveTabsHeader(element);
 
 								/* 调试 - 移动后打印信息 */
 								// console.log("调试 - 移动后打印信息");
@@ -781,6 +1030,9 @@
 								// console.log("------");
 								// printElementSizeInfo(element);
 
+								// 3、内容的显/隐
+								_tabs.showHideContent(element);
+								
 							});
 							
 						}
@@ -835,7 +1087,9 @@
 										element.classList.remove('active');
 										element.previousElementSibling.classList.add('active');
 
-										move(element.previousElementSibling);
+										// updateHeaderItemStyle(element.previousElementSibling);
+										_tabs.moveTabsHeader(element.previousElementSibling);
+										_tabs.showHideContent(element.previousElementSibling);
 									}
 									break;
 								} 
@@ -865,7 +1119,9 @@
 										element.classList.toggle('active');
 										element.nextElementSibling.classList.toggle('active');
 
-										move(element.nextElementSibling);
+										// updateHeaderItemStyle(element.nextElementSibling);
+										_tabs.moveTabsHeader(element.nextElementSibling);
+										_tabs.showHideContent(element.nextElementSibling);
 									}
 									break;
 								} 
@@ -876,12 +1132,37 @@
 
 			});
 
-			
+			document.addEventListener('DOMContentLoaded', function () {
+
+				let _create = document.querySelector('.operation-button > button[data-operation="create"]');
+				let _delete = document.querySelector('.operation-button > button[data-operation="delete"]');
+				let _switch = document.querySelector('.operation-button > button[data-operation="switch"]');
+
+				_create.onclick = function() {
+					// alert('添加！');
+					
+					// 创建元素
+					_tabs.createTabsItem();
+					
+				};
+
+				_delete.addEventListener("click", function() {
+					alert('关闭！');
+				});
+
+				_switch.addEventListener("click", function() {
+					alert('切换！');
+				});
+
+			});
+
 		</script>
 
 	</head>
 	<body>
-		<!-- 注释空白 -->
+
+		<!-- 注释 -->
+
 		<div class="tabs">
 			<div class="tabs-header">
 				<div class="header-operation-button operation-previous-page">
@@ -894,50 +1175,39 @@
 				<div class="header-list">
 					<ul>
 						<li class="active">
-							<span class="name">主页</span>
+							<span class="name" data-header-item-id="home-231704">主页</span>
 						</li><!--
 						注释空白
 						--><li>
-							<span class="name">主页</span>
+							<span class="name" data-header-item-id="home-523455">主页 - 可关闭</span>
 							<span class="close">×</span>
 						</li><!--
 						注释空白
 						--><li>
-							<span class="name">关闭按钮 - 动画 - 旋转</span>
+							<span class="name" data-header-item-id="close-232627">关闭按钮 - 动画 - 旋转</span>
 							<span class="close animation-style-1">×</span>
 						</li>
 						<li>
-							<span class="name">关闭按钮 - 动画 - 放大</span>
+							<span class="name" data-header-item-id="close-348689">关闭按钮 - 动画 - 放大</span>
 							<span class="close animation-style-2">×</span>
 						</li>
 						<li>
-							<span class="name">关闭按钮 - 动画 - 旋转放大</span>
+							<span class="name" data-header-item-id="close-217853">关闭按钮 - 动画 - 旋转放大</span>
 							<span class="close animation-style-3">×</span>
 						</li>
 						<li>
-							<span class="name">关闭按钮 - 动画 - 呼吸</span>
+							<span class="name" data-header-item-id="close-023863">关闭按钮 - 动画 - 呼吸</span>
 							<span class="close animation-style-4">×</span>
 						</li>
 						<li>
-							<span class="name">11</span>
+							<span class="name" data-header-item-id="random-732348">11</span>
 							<span class="close animation-style-4">×</span>
 						</li>
 						<li>
-							<span class="name">22</span>
+							<span class="name" data-header-item-id="random-068246">22</span>
 							<span class="close animation-style-4">×</span>
 						</li>
-						<li>
-							<span class="name">33</span>
-							<span class="close animation-style-4">×</span>
-						</li>
-						<li>
-							<span class="name">44</span>
-							<span class="close animation-style-4">×</span>
-						</li>
-						<li>
-							<span class="name">55</span>
-							<span class="close animation-style-4">×</span>
-						</li>
+						
 					</ul>
 				</div>
 
@@ -952,17 +1222,53 @@
 				</div>
 			</div>
 			<div class="tabs-content">
-			
+				<div class="content active" data-content-item-id="home-231704">
+					主页
+				</div>
+
+				<div class="content" data-content-item-id="home-523455">
+					主页 - 可关闭
+				</div>
+
+				<div class="content" data-content-item-id="close-232627">
+					关闭按钮 - 动画 - 旋转
+				</div>
+
+				<div class="content" data-content-item-id="close-348689">
+					关闭按钮 - 动画 - 放大
+				</div>
+
+				<div class="content" data-content-item-id="close-217853">
+					关闭按钮 - 动画 - 旋转放大
+				</div>
+				
+				<div class="content" data-content-item-id="close-023863">
+					关闭按钮 - 动画 - 呼吸
+				</div>
+
+				<div class="content" data-content-item-id="random-732348">
+					11
+				</div>
+
+				<div class="content" data-content-item-id="random-068246">
+					22
+				</div>
 			</div>
+			
 		</div>
 
+		<!-- 操作按钮 -->
 
 		<div class="operation-button">
-			<button>添加</button> 
+			<button data-operation='create'>添加</button> 
 
-			<button>关闭</button>
+			<button data-operation='delete'>关闭</button>
 
-			<button>切换</button>
+			<button data-operation='switch'>切换</button>
 		</div>
+
+
+		<!-- 注释 -->
+		
 	</body>
 </html>

@@ -337,52 +337,17 @@
 			/* End - transition（过渡）、transform（变换）、translate（移动）、animation（动画） */
 
 
+			.tabs > .tabs-content > .content {
+				width: 100%;
+				height: 100%;
 
-
-			/* ---------------------------------------------- */
-
-			/* 相关操作按钮样式 */
-
-			/* 1、清楚按钮默认样式 */
-			.operation-button button {
-				/* 去掉默认边框 */
-				border: none;
-				outline: none;
-				/* 去掉默认背景 */
-				background-color: transparent;
-
-				padding: 0;
-				margin: 0;
-				border-radius: 0;
-				box-shadow: none;
+				display: none;
 			}
 
-			.operation-button {
-				margin-top: 50px;
+			.tabs > .tabs-content > .content.active {
+				display: block;
 			}
 
-			.operation-button button {
-				width: 100px; 
-				height: 60px; 
-				margin: 20px; 
-
-				color: white;
-				font-size: 32px; 
-
-				border: 1px solid black; 
-				background-color: blue; 
-				
-				cursor: pointer; 
-			}
-
-			.operation-button button {
-				transition: background-color 0.3s ease;
-			}
-
-			.operation-button button:hover {
-				background-color: green;
-				color: white;
-			}
 
 		</style>
 
@@ -489,7 +454,10 @@
 		
 			/* End - JavaScript 监听窗口变化 */
 
-
+		</script>
+		
+		<script>
+			
 			/* Start - DOM元素宽度属性：clientWidth、offsetWidth 和 scrollWidth */
 
 			/*
@@ -658,6 +626,23 @@
 				let _operation_list = document.querySelector('.header-operation-button.operation-list');
 
 
+				let _header_list_ul_li_list = document.querySelectorAll('.tabs > .tabs-header > .header-list > ul > li');
+
+				let _content_list = document.querySelectorAll('.tabs > .tabs-content > .content');
+
+				/**
+				 * 修改样式
+				 */
+				function updateHeaderItemStyle(element) {
+					// 如果点击的元素 class 不包含 active
+					if (!element.classList.contains('active')) {
+						Array.from(_header_list_ul_li_list).forEach(_li_Element => {
+							_li_Element.classList.remove('active');
+						})
+						element.classList.add('active');
+					}
+				}
+
 				/* 
 					判断当前点击元素在界面中显示的位置 
 					
@@ -680,36 +665,36 @@
 					// 判断右边界
 					let b = ((element.offsetLeft + element.offsetWidth) - element.parentNode.scrollLeft) <= element.parentNode.offsetWidth
 					if (a && b) {
-						console.log("当前点击元素是否完全在界面中");
+						// console.log("当前点击元素是否完全在界面中");
 						return 0;
 					}
 
 					if (!a && b) {
-						console.log("当前点击元素 - 在左边并且不完全显示在界面中");
+						// console.log("当前点击元素 - 在左边并且不完全显示在界面中");
 						return 1;
 					}
 
 					if (a && !b) {
-						console.log("当前点击元素 - 在右边并且不完全显示在界面中");
+						// console.log("当前点击元素 - 在右边并且不完全显示在界面中");
 						return 2;
 					}
 
-					console.error("当前点击元素 - 不显示在界面中");
+					// console.error("当前点击元素 - 不显示在界面中");
 					return 3;
 				}
 
 				/**
 				 * 移动
 				 */
-				function move(element) {
+				function moveTabsHeader(element) {
 					let result = checkElementAllShowInView(element);
 
 					if (result === 0) {
-						console.log("当前点击元素是否完全在界面中,不需要移动");
+						// console.log("当前点击元素是否完全在界面中,不需要移动");
 
 					}
 					if (result === 1) {
-						console.log("当前点击元素 - 在左边并且不完全显示在界面中,需向右移动");
+						// console.log("当前点击元素 - 在左边并且不完全显示在界面中,需向右移动");
 						/* 
 							向右移动
 								移动距离
@@ -726,7 +711,7 @@
 
 					}
 					if (result === 2) {
-						console.log("当前点击元素 - 在右边并且不完全显示在界面中,需向左移动");
+						// console.log("当前点击元素 - 在右边并且不完全显示在界面中,需向左移动");
 						/* 
 							向左移动
 								移动距离
@@ -744,6 +729,26 @@
 					}
 				}
 
+				/**
+				 * 移动
+				 */
+				function showHideContent(element) {
+					let childElementName = element.querySelector('.name');
+					let _header_item_id = childElementName.dataset.headerItemId;
+
+					let querySelectorStr = `.tabs > .tabs-content > .content[data-content-item-id="${_header_item_id}"]`;
+					let _content_item_id_element = document.querySelector(querySelectorStr);
+					
+					// console.log(_content_item_id_element);
+					// console.log(_content_list.length);
+
+					Array.from(_content_list).forEach(_content_item => {
+						_content_item.classList.remove('active');
+					})
+					_content_item_id_element.classList.add('active');
+
+				}
+
 				/* 选项卡-子项 绑定点击事件 */
 				if (_header_list_ul) {
 					// 获取包裹盒子 _header_list_ul.offsetWidth
@@ -759,12 +764,7 @@
 							element.addEventListener("click", function() {
 								// 1、修改样式
 								// 如果点击的元素 class 不包含 active
-								if (!element.classList.contains('active')) {
-									Array.from(_li_Element_array).forEach(_li_Element => {
-										_li_Element.classList.remove('active');
-									})
-									element.classList.add('active');
-								}
+								updateHeaderItemStyle(element)
 
 								// 2、移动
 								/* 调试 - 移动前打印信息 */
@@ -773,7 +773,7 @@
 								// console.log("------");
 								// printElementSizeInfo(element);
 
-								move(element);
+								moveTabsHeader(element);
 
 								/* 调试 - 移动后打印信息 */
 								// console.log("调试 - 移动后打印信息");
@@ -781,6 +781,9 @@
 								// console.log("------");
 								// printElementSizeInfo(element);
 
+								// 3、内容的显/隐
+								showHideContent(element);
+								
 							});
 							
 						}
@@ -835,7 +838,9 @@
 										element.classList.remove('active');
 										element.previousElementSibling.classList.add('active');
 
-										move(element.previousElementSibling);
+										// updateHeaderItemStyle(element.previousElementSibling);
+										moveTabsHeader(element.previousElementSibling);
+										showHideContent(element.previousElementSibling);
 									}
 									break;
 								} 
@@ -865,7 +870,9 @@
 										element.classList.toggle('active');
 										element.nextElementSibling.classList.toggle('active');
 
-										move(element.nextElementSibling);
+										// updateHeaderItemStyle(element.nextElementSibling);
+										moveTabsHeader(element.nextElementSibling);
+										showHideContent(element.nextElementSibling);
 									}
 									break;
 								} 
@@ -881,7 +888,9 @@
 
 	</head>
 	<body>
-		<!-- 注释空白 -->
+
+		<!-- 注释 -->
+
 		<div class="tabs">
 			<div class="tabs-header">
 				<div class="header-operation-button operation-previous-page">
@@ -894,50 +903,39 @@
 				<div class="header-list">
 					<ul>
 						<li class="active">
-							<span class="name">主页</span>
+							<span class="name" data-header-item-id="home-231704">主页</span>
 						</li><!--
 						注释空白
 						--><li>
-							<span class="name">主页</span>
+							<span class="name" data-header-item-id="home-523455">主页 - 可关闭</span>
 							<span class="close">×</span>
 						</li><!--
 						注释空白
 						--><li>
-							<span class="name">关闭按钮 - 动画 - 旋转</span>
+							<span class="name" data-header-item-id="close-232627">关闭按钮 - 动画 - 旋转</span>
 							<span class="close animation-style-1">×</span>
 						</li>
 						<li>
-							<span class="name">关闭按钮 - 动画 - 放大</span>
+							<span class="name" data-header-item-id="close-348689">关闭按钮 - 动画 - 放大</span>
 							<span class="close animation-style-2">×</span>
 						</li>
 						<li>
-							<span class="name">关闭按钮 - 动画 - 旋转放大</span>
+							<span class="name" data-header-item-id="close-217853">关闭按钮 - 动画 - 旋转放大</span>
 							<span class="close animation-style-3">×</span>
 						</li>
 						<li>
-							<span class="name">关闭按钮 - 动画 - 呼吸</span>
+							<span class="name" data-header-item-id="close-023863">关闭按钮 - 动画 - 呼吸</span>
 							<span class="close animation-style-4">×</span>
 						</li>
 						<li>
-							<span class="name">11</span>
+							<span class="name" data-header-item-id="random-732348">11</span>
 							<span class="close animation-style-4">×</span>
 						</li>
 						<li>
-							<span class="name">22</span>
+							<span class="name" data-header-item-id="random-068246">22</span>
 							<span class="close animation-style-4">×</span>
 						</li>
-						<li>
-							<span class="name">33</span>
-							<span class="close animation-style-4">×</span>
-						</li>
-						<li>
-							<span class="name">44</span>
-							<span class="close animation-style-4">×</span>
-						</li>
-						<li>
-							<span class="name">55</span>
-							<span class="close animation-style-4">×</span>
-						</li>
+						
 					</ul>
 				</div>
 
@@ -952,17 +950,41 @@
 				</div>
 			</div>
 			<div class="tabs-content">
-			
+				<div class="content active" data-content-item-id="home-231704">
+					主页
+				</div>
+
+				<div class="content" data-content-item-id="home-523455">
+					主页 - 可关闭
+				</div>
+
+				<div class="content" data-content-item-id="close-232627">
+					关闭按钮 - 动画 - 旋转
+				</div>
+
+				<div class="content" data-content-item-id="close-348689">
+					关闭按钮 - 动画 - 放大
+				</div>
+
+				<div class="content" data-content-item-id="close-217853">
+					关闭按钮 - 动画 - 旋转放大
+				</div>
+				
+				<div class="content" data-content-item-id="close-023863">
+					关闭按钮 - 动画 - 呼吸
+				</div>
+
+				<div class="content" data-content-item-id="random-732348">
+					11
+				</div>
+
+				<div class="content" data-content-item-id="random-068246">
+					22
+				</div>
 			</div>
 		</div>
 
-
-		<div class="operation-button">
-			<button>添加</button> 
-
-			<button>关闭</button>
-
-			<button>切换</button>
-		</div>
+		<!-- 注释 -->
+		
 	</body>
 </html>

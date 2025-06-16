@@ -1,3 +1,4 @@
+/* Start - 初始化样式 */
 * {
 	margin: 0;
 	padding: 0;
@@ -5,10 +6,11 @@
 	/* box-sizing: border-box; */
 }
 
-
-.tabs ul {
+ul {
 	list-style: none;
 }
+
+/* End - 初始化样式 */
 
 /*定义盒子*/
 .tabs {

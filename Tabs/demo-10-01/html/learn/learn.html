@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<!-- <html lang="en"> -->
+<html lang="zh-Hans-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+
+		<style>
+			
+			/* Start - 初始化样式 */
+			/* 
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			 */
+			/* End - 初始化样式 */
+
+		</style>
+
+		<script>
+			/*
+				window.onload 等同于 window.addEventListener("load")
+			*/
+
+			document.addEventListener('DOMContentLoaded', function () {
+				console.log("document.addEventListener\('DOMContentLoaded'\)");
+			});
+
+			window.onload = function () {
+				console.log("window.onload");
+			}
+
+			window.addEventListener('load', function () {
+				console.log("window.addEventListener\('load'\)");
+			})
+
+		</script>
+
+		<script>
+			/* Start - JavaScript 监听窗口变化 */
+
+			/*
+				JavaScript 监听窗口变化
+					在JavaScript中，可以使用resize事件来监听浏览器窗口大小的变化。
+					这个事件在窗口大小发生变化时触发，可以用来动态调整页面元素的显示。
+			
+				基本实现
+					首先，我们可以编写一个函数来获取窗口的宽度和高度：
+						const getWindowInfo = () => {
+							const windowInfo = {
+								width: window.innerWidth,
+								height: window.innerHeight
+							};
+							console.log(windowInfo);
+						};
+
+					然后，我们可以使用addEventListener方法来监听resize事件：
+						window.addEventListener('resize', getWindowInfo);
+					
+					这样，每当窗口大小发生变化时，getWindowInfo函数就会被调用，并输出当前窗口的宽度和高度。
+				
+				防抖处理
+					直接监听resize事件可能会导致函数被频繁调用，影响性能。
+					我们可以使用防抖技术来优化这一点。
+					防抖的原理是无论窗口大小如何变化，只在变化停止后的指定时间内执行一次函数。
+
+						const debounce = (fn, delay) => {
+							let timer;
+							return function() {
+								if (timer) {
+									clearTimeout(timer);
+								}
+								timer = setTimeout(() => {
+									fn();
+								}, delay);
+							};
+						};
+
+						const debounceGetWindowInfo = debounce(getWindowInfo, 500);
+
+						window.addEventListener('resize', debounceGetWindowInfo);
+					
+					在这个例子中，debounceGetWindowInfo函数只会在窗口停止变化的500毫秒后触发一次。
+			*/
+
+			/*
+			const getWindowInfo = () => {
+				const windowInfo = {
+					width: window.innerWidth,
+					height: window.innerHeight
+				};
+				console.log(windowInfo);
+			};
+
+			window.addEventListener('resize', getWindowInfo);
+			*/
+
+
+			const getWindowInfo = () => {
+				const windowInfo = {
+					width: window.innerWidth,
+					height: window.innerHeight
+				};
+				console.log(windowInfo);
+			};
+
+			const debounce = (fn, delay) => {
+				let timer;
+				return function() {
+					if (timer) {
+						clearTimeout(timer);
+					}
+					timer = setTimeout(() => {
+						fn();
+					}, delay);
+				};
+			};
+
+			const debounceGetWindowInfo = debounce(getWindowInfo, 500);
+
+			window.addEventListener('resize', debounceGetWindowInfo);
+		
+			/* End - JavaScript 监听窗口变化 */
+		</script>
+
+		<script>
+
+			/* Start - 理解 JavaScript 中的鼠标事件属性 */
+
+			/* 
+				在 JavaScript 中，处理鼠标事件时，经常会用到各种事件属性来获取鼠标的位置信息。
+				这些属性包括 clientX、clientY、offsetX、offsetY 等，它们各自有不同的用途和计算方式。
+
+				鼠标事件属性概述
+
+					● clientX 和 clientY：
+						这两个属性提供了事件发生时鼠标在浏览器视口中的位置，不包括页面滚动的部分。
+						例如，无论页面是否滚动，当鼠标点击视口的左上角时，clientX 和 clientY 的值都是 0。
+
+					● offsetX 和 offsetY：
+						这两个属性则提供了鼠标事件相对于事件目标元素的内边距边界的位置。
+						如果事件目标是一个元素，offsetX 和 offsetY 表示鼠标点击位置相对于该元素左上角内边距的偏移量。
+
+					● pageX 和 pageY：
+						与 clientX 和 clientY 类似，但它们包括了页面滚动的距离。
+						也就是说，pageX 和 pageY 提供的是鼠标相对于整个文档左上角的位置。
+
+					● screenX 和 screenY：
+						这两个属性则表示鼠标相对于用户屏幕左上角的位置。
+
+				代码示例
+
+					下面是一个简单的示例，展示了如何在鼠标事件处理函数中使用这些属性：
+
+						document.addEventListener('click', function(event) {
+							console.log('clientX:', event.clientX, 'clientY:', event.clientY);
+							console.log('offsetX:', event.offsetX, 'offsetY:', event.offsetY);
+							console.log('pageX:', event.pageX, 'pageY:', event.pageY);
+							console.log('screenX:', event.screenX, 'screenY:', event.screenY);
+						});
+				
+				在这个示例中，当用户在文档中点击时，会在控制台中打印出鼠标的 clientX、clientY、offsetX、offsetY、pageX、pageY、screenX 和 screenY 属性的值。
+
+				注意事项
+
+					● clientX 和 clientY 不受页面滚动的影响，始终基于浏览器视口。
+
+					● offsetX 和 offsetY 可以用来确定鼠标点击在一个元素内部的位置，特别是在处理像画布这样的元素时非常有用。
+
+					● pageX 和 pageY 包含了页面滚动的距离，适用于需要相对于整个文档定位的场景。
+
+					● screenX 和 screenY 通常用于多屏幕环境下的定位。
+			*/
+
+			document.addEventListener('click', function(event) {
+				console.log('clientX:', event.clientX, 'clientY:', event.clientY);
+				console.log('offsetX:', event.offsetX, 'offsetY:', event.offsetY);
+				console.log('pageX:', event.pageX, 'pageY:', event.pageY);
+				console.log('screenX:', event.screenX, 'screenY:', event.screenY);
+			});
+
+			/* End - 理解 JavaScript 中的鼠标事件属性 */
+			
+		</script>
+
+		<script>
+
+			/* 			
+				HTML 元素尺寸与位置属性全解析
+					一、定位相关属性
+						1. offsetParent
+							● 作用：返回最近的定位祖先元素（position 不为 static）
+							● 特点：
+								○ 如果元素自身是固定定位(fixed)，则 offsetParent 为 null
+								○ 对于 body 元素，offsetParent 为 null
+								○ 表格单元格(table cell)的 offsetParent 可能是表格行(table row)
+							
+							代码：
+								const parent = element.offsetParent;
+
+							在标准的 HTML DOM API 中，没有 clientParent 和 scrollParent 这两个属性。
+							只有 offsetParent 是标准的 DOM 属性。
+
+						2. offsetLeft 和 offsetTop
+							● 只读属性（Read-only）
+							● 作用：返回元素相对于 offsetParent 的左边和上边的距离
+							● 包含：元素自身边框(border)
+							● 不包含：外边距(margin)
+
+							代码：
+								const left = element.offsetLeft;  // 相对于offsetParent左边缘
+								const top = element.offsetTop;    // 相对于offsetParent上边缘
+
+
+
+						3. clientLeft 和 clientTop
+							● 只读属性（Read-only）
+							● 作用：返回元素左边框和上边框的宽度
+							● 特殊情况：
+								○ 对于从右到左(RTL)布局，clientLeft 包含滚动条宽度
+								○ 通常等于 border-left-width 和 border-top-width
+
+							代码：
+								const borderLeft = element.clientLeft;  // 左边框宽度
+								const borderTop = element.clientTop;    // 上边框宽度
+
+						4. scrollLeft 和 scrollTop
+							● 作用：获取/设置元素内容滚动的距离
+							● 特点：
+								○ 可读写属性（Read-write）
+								○ 对于不可滚动元素返回0
+								○ 常用于实现自定义滚动效果
+
+							代码：
+								// 获取
+								const scrollX = element.scrollLeft;
+								const scrollY = element.scrollTop;
+
+								// 设置
+								element.scrollLeft = 100; // 向右滚动100px
+								element.scrollTop = 50;   // 向下滚动50px
+
+					二、尺寸相关属性
+						1. clientWidth 和 clientHeight
+							● 包含：内容 + 内边距(padding)
+							● 不包含：边框(border)、外边距(margin)和滚动条
+							● 特殊情况：
+								○ 内联元素(inline)返回0
+								○ 对于文档根元素(document.documentElement)，返回视口尺寸
+
+							代码：
+								const visibleWidth = element.clientWidth;   // 可视内容宽度
+								const visibleHeight = element.clientHeight; // 可视内容高度
+
+						2. offsetWidth 和 offsetHeight
+							● 包含：内容 + 内边距 + 边框 + 滚动条(如果有)
+							● 不包含：外边距
+							● 特点：
+								○ 返回整数(四舍五入)
+								○ 包含 box-sizing 的影响
+
+							代码：
+								const totalWidth = element.offsetWidth;   // 元素整体宽度
+								const totalHeight = element.offsetHeight; // 元素整体高度
+
+						3. scrollWidth 和 scrollHeight
+							● 作用：返回元素内容的实际大小（包括因溢出而不可见的部分）
+							● 包含：内容 + 内边距
+							● 不包含：边框、外边距和滚动条
+							● 特殊情况：
+								○ 没有溢出时等于 clientWidth/clientHeight
+								○ 包含伪元素的尺寸
+
+							代码：
+								const fullContentWidth = element.scrollWidth;   // 内容总宽度
+								const fullContentHeight = element.scrollHeight; // 内容总高度
+
+					三、属性关系图示
+						offsetWidth/Height
+						├── border (clientLeft/clientTop)
+						├── padding + content (clientWidth/Height)
+						└── 滚动条(如果有)
+
+						scrollWidth/Height ≥ clientWidth/Height
+
+			*/
+
+			function printElementSizeInfo(element) {
+
+				console.log(`clientLeft:${element.clientLeft}`);
+				console.log(`clientTop:${element.clientTop}`);
+
+				console.log(`offsetLeft:${element.offsetLeft}`);
+				console.log(`offsetTop:${element.offsetTop}`);
+
+				console.log(`scrollLeft:${element.scrollLeft}`);
+				console.log(`scrollTop:${element.scrollTop}`);
+				
+				console.log(`clientWidth:${element.clientWidth}`);
+				console.log(`clientHeight:${element.clientHeight}`);
+
+				console.log(`offsetWidth:${element.offsetWidth}`);
+				console.log(`offsetHeight:${element.offsetHeight}`);
+
+				console.log(`scrollWidth:${element.scrollWidth}`);
+				console.log(`scrollHeight:${element.scrollHeight}`);
+
+				console.log("-----------------------------------------------------------------");
+				console.log("-----------------------------------------------------------------");
+				
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+
+				let element_div_test_00 = document.getElementById('test_00');
+				console.log("test_00");
+				printElementSizeInfo(element_div_test_00);
+
+				let element_div_test_10_01 = document.getElementById('test_10_01');
+				console.log("test_10_01");
+				printElementSizeInfo(element_div_test_10_01);
+
+				let element_div_test_10_02 = document.getElementById('test_10_02');
+				console.log("test_10_02");
+				printElementSizeInfo(element_div_test_10_02);
+
+				let element_div_test_10_03 = document.getElementById('test_10_03');
+				console.log("test_10_03");
+				printElementSizeInfo(element_div_test_10_03);
+
+				let element_div_test_10_04 = document.getElementById('test_10_04');
+				console.log("test_10_04");
+				printElementSizeInfo(element_div_test_10_04);
+
+				let element_div_test_10_05 = document.getElementById('test_10_05');
+				console.log("test_10_05");
+				printElementSizeInfo(element_div_test_10_05);
+
+			});
+		</script>
+
+	</head>
+	<body>
+		
+		<!-- 注释 -->
+
+		<div 
+			id="test_00" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				background-color: red; 
+			"
+		>
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: red;">id="test_00"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>样式</h3>
+					<p>
+						style="<br>
+							&emsp;width: 300px; <br>
+							&emsp;height: 200px; <br>
+							&emsp;background-color: red;<br>
+						"
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:0<br>
+						clientTop:0<br>
+						offsetLeft:8<br>
+						offsetTop:8<br>
+						scrollLeft:0<br>
+						scrollTop:0<br>
+						clientWidth:300<br>
+						clientHeight:200<br>
+						offsetWidth:300<br>
+						offsetHeight:200<br>
+						scrollWidth:300<br>
+						scrollHeight:200<br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- 注释 -->
+
+		<div 
+			id="test_10_01" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				border: 11px solid black; 
+				background-color: green; 
+			"
+		>
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: green;">id="test_10_01"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>样式</h3>
+					<p>
+						style="<br>
+							&emsp;width: 300px; <br>
+							&emsp;height: 200px; <br>
+							&emsp;border: 11px solid black; <br>
+							&emsp;background-color: green; <br>
+						"
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:11<br>
+						clientTop:11<br>
+						offsetLeft:8<br>
+						offsetTop:693<br>
+						scrollLeft:0<br>
+						scrollTop:0<br>
+						clientWidth:300<br>
+						clientHeight:200<br>
+						offsetWidth:322<br>
+						offsetHeight:222<br>
+						scrollWidth:300<br>
+						scrollHeight:200<br>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+
+		<div 
+			id="test_10_02" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				border: 11px solid black; 
+				margin: 22px; 
+				background-color: yellow; 
+			"
+		>
+
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: yellow;">id="test_10_02"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>样式</h3>
+					<p>
+						style="<br>
+							&emsp;width: 300px; <br>
+							&emsp;height: 200px; <br>
+							&emsp;border: 11px solid black; <br>
+							&emsp;margin: 22px; <br>
+							&emsp;background-color: yellow; <br>
+						"
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:11 <br>
+						clientTop:11 <br>
+						offsetLeft:30 <br>
+						offsetTop:1413 <br>
+						scrollLeft:0 <br>
+						scrollTop:0 <br>
+						clientWidth:300 <br>
+						clientHeight:200 <br>
+						offsetWidth:322 <br>
+						offsetHeight:222 <br>
+						scrollWidth:300 <br>
+						scrollHeight:200 <br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div 
+			id="test_10_03" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				border: 11px solid black; 
+				padding: 33px; 
+				background-color: cyan; 
+			"
+		>
+			
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: cyan;">id="test_10_03"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>样式</h3>
+					<p>
+						style="<br>
+							&emsp;width: 300px; <br>
+							&emsp;height: 200px; <br>
+							&emsp;border: 11px solid black; <br>
+							&emsp;padding: 33px; <br>
+							&emsp;background-color: cyan; <br>
+						"
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:11 <br>
+						clientTop:11 <br>
+						offsetLeft:8 <br>
+						offsetTop:2132 <br>
+						scrollLeft:0 <br>
+						scrollTop:0 <br>
+						clientWidth:366 <br>
+						clientHeight:266 <br>
+						offsetWidth:388 <br>
+						offsetHeight:288 <br>
+						scrollWidth:366 <br>
+						scrollHeight:266 <br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div 
+			id="test_10_04" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				border: 11px solid black; 
+				margin: 22px; 
+				padding: 33px; 
+				background-color: magenta; 
+			"
+		>
+			
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: magenta;">id="test_10_04"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>样式</h3>
+					<p>
+						style="<br>
+							&emsp;width: 300px; <br>
+							&emsp;height: 200px; <br>
+							&emsp;border: 11px solid black; <br>
+							&emsp;margin: 22px; <br>
+							&emsp;padding: 33px; <br>
+							&emsp;background-color: magenta; <br>
+						"
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:11 <br>
+						clientTop:11 <br>
+						offsetLeft:30 <br>
+						offsetTop:2917 <br>
+						scrollLeft:0 <br>
+						scrollTop:0 <br>
+						clientWidth:366 <br>
+						clientHeight:266 <br>
+						offsetWidth:388 <br>
+						offsetHeight:288 <br>
+						scrollWidth:366 <br>
+						scrollHeight:266 <br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div 
+			id="test_10_05" 
+			style="
+				width: 300px; 
+				height: 200px; 
+				border: 11px solid black; 
+				margin: 22px; 
+				padding: 33px; 
+				background-color: gray; 
+				box-sizing: border-box; 
+			"
+		>
+			
+		</div>
+
+		<div style="margin: 10px; padding: 10px; border: 1px solid black; display: flex;  flex-direction: column;">
+
+			<h2 style="color: gray;">id="test_10_05"</h2>
+
+			<div style="display: flex;  flex-direction: row;">
+				<div style="margin: 0 20px 0 0;">
+					<h3>样式</h3>
+					<p>
+						style="<br>
+							&emsp;width: 300px; <br>
+							&emsp;height: 200px; <br>
+							&emsp;border: 11px solid black; <br>
+							&emsp;margin: 22px; <br>
+							&emsp;padding: 33px; <br>
+							&emsp;background-color: gray; <br>
+							&emsp;box-sizing: border-box; <br>
+						"
+					</p>
+				</div>
+				<div >
+					<h3>日志</h3>
+					<p>
+						clientLeft:11 <br>
+						clientTop:11 <br>
+						offsetLeft:30 <br>
+						offsetTop:3714 <br>
+						scrollLeft:0 <br>
+						scrollTop:0 <br>
+						clientWidth:278 <br>
+						clientHeight:178 <br>
+						offsetWidth:300 <br>
+						offsetHeight:200 <br>
+						scrollWidth:278 <br>
+						scrollHeight:178 <br>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div style=" width: 500px; height: 100%">
+			<iframe 
+				src="learn-test-01.html" 
+				<!-- frameborder="0" -->
+		  		scrolling="no"
+		  		style="width: 100%; border: none;"
+			>
+			</iframe>
+		</div>
+		
+	</body>
+</html>
